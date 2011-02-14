@@ -1,0 +1,53 @@
+Nazev: Rozsireni typoveho systemu Haskellu  ???
+
+Zajimavosti v typovych systemech
+(1) ktere lze implementovat v Haskellu bez rozsireni:
+    nektere indexovane typy: AVL?
+    implementace extensible kinds pomoci typovych trid (priklad na prevod jednotek)
+
+(2) po malem rozsireni
+    phantom types, type families,
+    multiparametric type classes (podtypy?)
+
+(3) po rozsireni, ktere uz bylo navrzeno
+    gadt?
+
+(4) vlastni rozsireni typoveho systemu
+
+------------------------------
+
+Nazev: Rozsirenia typoveho systemu Haskellu (modernych funkcionalnych jazykov)
+
+Haskell uz ma svoj vek ale stale zije.
+Pouziva rozsireny Hindley-Milner.
+Napriek svojmu veku nie je mrtvy, prebieha vyvoj aj v oblasti typoveho systemu.
+Vznikaju rozsirenia.
+
+Niektore umoznuju
+
+
+Rozdelenie programov na spravne a nespravne... typovy system -> rozdelenie na typovo korektne a typovo nekorektne.
+Cielom je vytvorit taky typovy system, kde sa tieto dve delenia budu lisit minimalne.
+Ake rozsirenia existuju.
+Popisat vybrane rozsirenia.
+Co maju spolocne, cim sa lisia.
+
+Ktore z nich su len konzervativnym rozsirenim? Ktore su len prirodzenym zuplnenim...
+
+-----
+
+Fylozoficka vsuvka o vysokom jazyku a vysokych myslienkach... a ze to ze niektore typove rozsirenia
+umoznuju to iste nemusi byt zle, pokial k tomu ponuknu nejaku peknu a intuitivnu/konstruktivnu/inspirativnu/... syntax
+
+-----
+
+Typove systemy sa znazia polozit hranicu medzi programy korektne a nekorektne, a robia to tak,
+ze tieto programy rozdeluju na programy korektne typovane (otypovatelne) a nekorektne typovane (neotypovatelne).
+Nerozhodnutelnost niektorych problemov jasne hovori, ze tieto dve hranice sa lisia.
+Pre kazdy typovy system tato hranica vyzera inak. Typmi mozeme klast obmedzenia na to, ako je
+programy/funkcie mozne pouzit.
+
+Diplomant by mal preskumat hranice stadardneho typoveho systemu Haskellu a kam tuto hranicu posunu vybrane typove rozsirenia.
+
+
+
