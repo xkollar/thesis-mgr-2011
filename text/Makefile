@@ -9,12 +9,12 @@ $(NAME).bbl: bibliography.bib
 	bibtex $(NAME).aux
 
 clean:
+	rm *.*pk
 	rm *.aux
 	rm *.log
 	rm *.pdf
-	rm *.toc
-	rm *.*pk
 	rm *.tfm
+	rm *.toc
 
 cleanall:
 	rm *.{aux,bbl,blg,clo,cls,dvi,lof,log,out,pdf,ps,toc,utf8.txt,[0-9]*pk}

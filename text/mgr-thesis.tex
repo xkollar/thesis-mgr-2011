@@ -1,17 +1,17 @@
-\documentclass[12pt,oneside,draft]{fithesis2}
-\usepackage[english]{babel} % package for multilingual support
-\usepackage[cp1250]{inputenc} % Windows OS encoding
+\documentclass[11pt,oneside,draft]{fithesis2}
+\usepackage[slovak]{babel}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref}
 
-\thesistitle{Sample thesis} % enter thesis title
-\thesissubtitle{Bachelor thesis}
-\thesisstudent{Jane Doe}    % name of the author
-\thesiswoman{true}          % defines author’s gender
+\thesistitle{Rozšírenia typového systému pre Haskell}
+\thesissubtitle{Diplomová práca}
+\thesisstudent{Matej Kollár}
+\thesiswoman{false}
 \thesisfaculty{fi}
-\thesisyear{spring 2008}
-\thesisadvisor{John Foo, Ph.D.} % fill in advisor’s name
-\thesislang{en}                 % thesis is in English
+\thesisyear{jar 2011}
+\thesisadvisor{Libor Škarvada, RNDr.}
+\thesislang{sk}
 
 \begin{document}
 \FrontMatter
@@ -34,17 +34,15 @@ The aim of the bachelor work is to provide...
 keyword1, keyword2, etc.
 \end{ThesisKeyWords}
 
-\MainMatter
-\chapter{Introduction}
-This is the first chapter of the thesis.
-
-\chapter{Another chapter}
-...
-
 \tableofcontents          % prints table of contents
+
+\MainMatter
 
 \chapter{Introduction}    % first chapter followed by
                           % many others
+
+\chapter{Another chapter}
+...
 
 \bibliographystyle{plain} % sets plain bibliography style
 \bibliography{bib-db}     % BibTeX database file
