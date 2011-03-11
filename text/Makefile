@@ -2,11 +2,14 @@ NAME=mgr-thesis
 
 all:$(NAME).pdf
 
-$(NAME).pdf: $(NAME).tex
-	pdflatex $(NAME).tex
+$(NAME).pdf: $(NAME).tex $(NAME).bbl
+	pdflatex $(NAME)
 
 $(NAME).bbl: bibliography.bib
-	bibtex $(NAME).aux
+	pdflatex $(NAME)
+	bibtex $(NAME)
+	pdflatex $(NAME)
+	pdflatex $(NAME)
 
 clean:
 	-rm *.*pk
@@ -17,5 +20,16 @@ clean:
 	-rm *.toc
 
 cleanall:
-	rm *.{aux,bbl,blg,clo,cls,dvi,lof,log,out,pdf,ps,toc,utf8.txt,[0-9]*pk}
+	-rm *.aux
+	-rm *.bbl
+	-rm *.blg
+	-rm *.dvi
+	-rm *.lof
+	-rm *.log
+	-rm *.out
+	-rm *.pdf
+	-rm *.ps
+	-rm *.toc
+	-rm *.utf8.txt
+	-rm *.[0-9]*pk
 
