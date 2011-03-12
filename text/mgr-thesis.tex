@@ -1,5 +1,6 @@
 \documentclass[11pt,oneside,draft]{fithesis2}
-\usepackage[slovak]{babel}
+%\usepackage[slovak]{babel}
+\usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref}
@@ -35,8 +36,9 @@ I would like to thank my supervisor...
 The aim of the master work is to provide...
 \end{ThesisAbstract}
 
+% XXX! Check whether they are relevant.
 \begin{ThesisKeyWords}
-keyword1, keyword2, etc.
+Haskell, type system, type extension
 \end{ThesisKeyWords}
 
 \tableofcontents
@@ -44,7 +46,8 @@ keyword1, keyword2, etc.
 \MainMatter
 
 \chapter{Introduction}
-Ľaľa ťapina tĺk ďateľ.
+
+\cite{barendregt:1992:lambda}
 
 \chapter{Type system}
 
@@ -52,7 +55,7 @@ keyword1, keyword2, etc.
 
 \section{Haskell type system}
 
-\cite{haskell.org}
+\cite{haskell2010}
 
 \chapter{Extensions}
 
@@ -79,7 +82,7 @@ some text..
 
 I came to conclusion that violet cows are present mainly in ads.
 
-\bibliographystyle{plain}
+\bibliographystyle{apalike}
 \bibliography{bibliography}
 
 \end{document}

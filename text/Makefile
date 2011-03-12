@@ -5,10 +5,11 @@ all:$(NAME).pdf
 $(NAME).pdf: $(NAME).tex $(NAME).bbl
 	pdflatex $(NAME)
 
-$(NAME).bbl: bibliography.bib
+$(NAME).aux: $(NAME).tex
 	pdflatex $(NAME)
+
+$(NAME).bbl: bibliography.bib $(NAME).aux
 	bibtex $(NAME)
-	pdflatex $(NAME)
 	pdflatex $(NAME)
 
 clean:
