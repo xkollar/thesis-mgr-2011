@@ -2,15 +2,15 @@ NAME=mgr-thesis
 
 all:$(NAME).pdf
 
-$(NAME).pdf: $(NAME).tex $(NAME).bbl
+final:
 	pdflatex $(NAME)
-
-$(NAME).aux: $(NAME).tex
-	pdflatex $(NAME)
-
-$(NAME).bbl: bibliography.bib $(NAME).aux
 	bibtex $(NAME)
 	pdflatex $(NAME)
+	pdflatex $(NAME)
+
+$(NAME).pdf: $(NAME).tex bibliography.bib
+	pdflatex $(NAME)
+	bibtex $(NAME)
 
 clean:
 	-rm *.*pk
