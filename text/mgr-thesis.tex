@@ -1,3 +1,4 @@
+% vim: spell
 \documentclass[11pt,oneside,draft]{fithesis2}
 %\usepackage[slovak]{babel}
 \usepackage[english]{babel}
@@ -6,10 +7,32 @@
 \usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref}
 \usepackage{lmodern}
 
+\usepackage{amsmath,amsthm,amsfonts}
+%\usepackage{ae}
+\usepackage{fancyvrb}
+\usepackage{enumerate}
+\clubpenalty=10000
+\widowpenalty=10000
+
+\DefineVerbatimEnvironment{code}{Verbatim}
+        { fontsize=\footnotesize
+        , commentchar=@
+        , frame=single
+        %, numbers=left
+        %, framesep=5pt
+        %, fontshape=sl
+        , commandchars=\\\{\}
+        , framesep=5pt
+        %, fontshape=sl
+        }
+
+\newtheorem{lemma}{Lemma}
+
 %\thesistitle{Rozšírenia typového systému pre Haskell}
 \thesistitle{Extensions of Haskell type system}
 %\thesissubtitle{Diplomová práca}
-\thesissubtitle{Master Thesis}
+%\thesissubtitle{Master Thesis}
+\thesissubtitle{Diploma Thesis}
 \thesisstudent{Matej Kollár}
 \thesiswoman{false}
 \thesisfaculty{fi}
@@ -61,41 +84,71 @@ Haskell, type system, type extension
 
 \dots
 
-\section{Multiparametric type classes}
+\section{Empty data declarations}
 
-\dots
+Empty data declarations in fact is not type extensions, it only makes language more complete.
+With this extension you are allowed to declare empty (except \(\bot\)) data type:
+\begin{code}
+data Empty
+\end{code}
+However, this can be achieved without this extension as well. Consider following.
+\begin{code}
+newtype Empty' = E Empty'
+\end{code}
+It looks like there actually are values besides \(\bot\), namely \(\texttt{E}^n \, \bot\)
+for every \(n \in \mathbb{N}_0\) and \(\mu x . \texttt{E} \, x\).
+Those are, as shown in lemma \ref{emptyTypes}, indistinguishable from \(\bot\).
 
-\section{Generalised algebraic datatypes}
+\begin{lemma}[Empty types]
+\label{emptyTypes}
+If there is value \(v :: \texttt{Empty'}\), then \(v \approx \bot\).
+\end{lemma}
 
-\dots
+\begin{proof}
+Trivial. % XXX: I may make it bit more clear... maybe.
+\end{proof}
 
-\section{Extenzible kinds}
+This ``extension'' is in fact very natural. Definition of \texttt{Empty'}
+might give user feeling that it is non-empty, whereas emptiness is
+obvious in case of \texttt{Empty}.
 
-\dots
+When defining empty type without this extension be sure to use
+\texttt{newtype}, not \texttt{data} as it will be inhabited not only with \(\bot\).
+\begin{code}
+data EmptyBad = EB EmptyBad
+\end{code}
+
+\begin{lemma}
+There exists value \(v :: \texttt{EmptyBad}\) such that \(v \not \approx \bot\).
+\end{lemma}
+
+\begin{proof}
+Let \texttt{emptyBad} be catamorphism over \texttt{EmptyBad}.
+\begin{code}
+emptyBad :: (a -> a) -> EmptyBad -> a
+emptyBad f (EB x) = f (emptyBad x)
+\end{code}
+Now consider \(\texttt{emptyBad fac (fix EB)}\) and \(\texttt{emptyBad fac} \, \bot\).
+They are obviously distinguishable, as first one is factorial, second one is \(\bot\) itself.
+\end{proof}
 
 \section{Phantom types}
 
-\dots
+\section{Multiparametric type classes}
+
+\section{Functional dependencies}
+
+\section{Generalised algebraic datatypes}
+
+\section{Extensible kinds}
 
 \section{Multiparametric type classes}
 
-\dots
-
 \section{Subtyping}
-
-\dots
-
-\section{Extension n+1}
-
-\dots
-
-\section{Extension n+2}
-
-Some text\dots
 
 \chapter{Unified view}
 
-\chapter{Own extension proposal}
+% \chapter{Own extension proposal}
 
 %\chapter{Z\'aver}
 \chapter{Conclusion}
