@@ -86,7 +86,11 @@ Haskell, type system, type extension
 
 \section{Empty data declarations}
 
-\emph{Empty data declarations} is not type extension in fact, it only makes language more complete.
+Extension \emph{empty data declarations} allows empty data declarations
+(without any data constructors). This is very natural as there is possible
+to declare types with arbitrary number of constructors (except 0). In
+fact, it is not extension in sense that it add something artificial in
+language, it only make syntax more comprehensive.
 With this extension you are allowed to declare empty (except \(\bot\)) data type:
 \begin{code}
 data Empty
@@ -142,7 +146,9 @@ They are obviously distinguishable, as first one is factorial, second one is \(\
 
 \section{Extensible kinds}
 
-\section{Multiparametric type classes}
+\section{Rank-2 types}
+
+\section{Rank-n types}
 
 \section{Subtyping}
 
