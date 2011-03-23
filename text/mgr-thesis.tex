@@ -86,17 +86,17 @@ Haskell, type system, type extension
 
 \section{Empty data declarations}
 
-Empty data declarations in fact is not type extensions, it only makes language more complete.
+\emph{Empty data declarations} is not type extension in fact, it only makes language more complete.
 With this extension you are allowed to declare empty (except \(\bot\)) data type:
 \begin{code}
 data Empty
 \end{code}
 However, this can be achieved without this extension as well. Consider following.
 \begin{code}
-newtype Empty' = E Empty'
+newtype Empty' = E' Empty'
 \end{code}
-It looks like there actually are values besides \(\bot\), namely \(\texttt{E}^n \, \bot\)
-for every \(n \in \mathbb{N}_0\) and \(\mu x . \texttt{E} \, x\).
+It looks like there actually are values besides \(\bot\), namely \(\texttt{E'}^n \, \bot\)
+for every \(n \in \mathbb{N}_0\) and \(\mu x . \texttt{E'} \, x\).
 Those are, as shown in lemma \ref{emptyTypes}, indistinguishable from \(\bot\).
 
 \begin{lemma}[Empty types]
