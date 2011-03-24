@@ -68,3 +68,5 @@ fact5 = empty fact' undefined
 
 bot :: a
 bot = bot
+
+data Phantom a = P

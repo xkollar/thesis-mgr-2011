@@ -15,7 +15,7 @@
 \widowpenalty=10000
 
 \DefineVerbatimEnvironment{code}{Verbatim}
-        { fontsize=\footnotesize
+        { fontsize=\small
         , commentchar=@
         , frame=single
         %, numbers=left
@@ -52,11 +52,11 @@
 \end{ThesisDeclaration}
 
 \begin{ThesisThanks}
-I would like to thank my supervisor...
+I would like to thank to Libor, Zuzana and Mom.
 \end{ThesisThanks}
 
 \begin{ThesisAbstract}
-The aim of the master work is to provide...
+The aim of the master's thesis/work is to provide...
 \end{ThesisAbstract}
 
 % XXX! Check whether they are relevant.
@@ -89,13 +89,14 @@ Haskell, type system, type extension
 Extension \emph{empty data declarations} allows empty data declarations
 (without any data constructors). This is very natural as there is possible
 to declare types with arbitrary number of constructors (except 0). In
-fact, it is not extension in sense that it add something artificial in
-language, it only make syntax more comprehensive.
-With this extension you are allowed to declare empty (except \(\bot\)) data type:
+fact, it is not extension in sense of adding something artificial in
+language, it only make syntax more comprehensive. Using this extension can
+be empty (except \(\bot\)) data type \texttt{Empty} declared in this way:
 \begin{code}
 data Empty
 \end{code}
-However, this can be achieved without this extension as well. Consider following.
+However, the same can be achieved without this extension as well. Consider type \texttt{Empty'}
+declared with \texttt{newtype}.
 \begin{code}
 newtype Empty' = E' Empty'
 \end{code}
@@ -109,15 +110,19 @@ If there is value \(v :: \texttt{Empty'}\), then \(v \approx \bot\).
 \end{lemma}
 
 \begin{proof}
-Trivial. % XXX: I may make it bit more clear... maybe.
+In \cite{haskell2010} is stated, that \(\texttt{Empty'} \, \bot \approx \bot\).
+Simple induction provides us all \(\texttt{E'}^n \, \bot\) cases
+and least fixed point case is obvious as well, as \(\bot\) is least element.
 \end{proof}
 
 This ``extension'' is in fact very natural. Definition of \texttt{Empty'}
 might give user feeling that it is non-empty, whereas emptiness is
 obvious in case of \texttt{Empty}.
 
+Analogous construction can be done with type constructors.
+
 When defining empty type without this extension be sure to use
-\texttt{newtype}, not \texttt{data} as it will be inhabited not only with \(\bot\).
+\texttt{newtype}, not \texttt{data}, as it will be inhabited not only with \(\bot\).
 \begin{code}
 data EmptyBad = EB EmptyBad
 \end{code}
@@ -133,10 +138,10 @@ emptyBad :: (a -> a) -> EmptyBad -> a
 emptyBad f (EB x) = f (emptyBad x)
 \end{code}
 Now consider \(\texttt{emptyBad fac (fix EB)}\) and \(\texttt{emptyBad fac} \, \bot\).
-They are obviously distinguishable, as first one is factorial, second one is \(\bot\) itself.
+They are obviously distinguishable as first one is factorial function but second one is \(\bot\) itself.
 \end{proof}
 
-\section{Phantom types}
+% \section{Phantom types}
 
 \section{Multiparametric type classes}
 
@@ -148,7 +153,7 @@ They are obviously distinguishable, as first one is factorial, second one is \(\
 
 \section{Rank-2 types}
 
-\section{Rank-n types}
+\subsection{Rank-n types}
 
 \section{Subtyping}
 
