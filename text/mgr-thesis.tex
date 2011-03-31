@@ -181,6 +181,59 @@ Subtyping.
 
 % \section{Subtyping} % as example
 
+\chapter{Examples}
+
+\section{Apples and oranges}
+
+Problem is simple: we do not want do jumble apple and oranges,
+exactly like we were taught in elementary school.
+
+\subsection{Phantom types \& Empty data declarations}
+
+This solution is simple and clean.
+\begin{code}
+data Apple
+data Orange
+
+newtype Count a = Count Integer
+
+plus :: Count a -> Count a -> Count a
+Count x `plus` Count y = Count (x + y)
+\end{code}
+Most interesting thing here is function \texttt{plus}, that itself has more general type, but
+by narrowing it down to more specific one we get function that allows us
+adding up oranges with oranges, apples with apples, but forbids any other combinations
+of apples and oranges. Advantage of this solution is that it is polymorphic
+and we do not need to separately write code for apples and oranges.
+
+On the contrary, this can be also seen as drawback, as one can create value
+of type \texttt{Count Bool} which we have not intended. However,
+one can take this in count by writing:
+\begin{code}
+data Apple
+data Orange
+
+class Fruit a where
+
+instance Fruit Apple
+instance Fruit Orange
+
+newtype Count a = Count Integer
+
+plus :: Fruit a => Count a -> Count a -> Count a
+Count x `plus` Count y = Count (x + y)
+\end{code}
+
+As every elementary school child notices, from time to time one need to add apples and oranges,
+and result will not be such nonsense:
+\begin{code}
+data Fruit'
+instance Fruit Fruit'
+
+plus' :: Fruit a => Count a -> Count b -> Count Fruit'
+Count x `plus'` Count y = Count (x + y)
+\end{code}
+
 \chapter{Unified view}
 
 % \chapter{Own extension proposal}
