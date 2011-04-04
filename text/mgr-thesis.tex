@@ -76,6 +76,8 @@ Haskell, type system, type extension
 
 (Part of introduction?)\dots
 
+\section{Haskell type system}
+
 As one can find not only \cite{haskell2010}, Haskell uses a traditional
 Hindley-Milner polymorphic type system to provide a static type
 semantics enriched with type classes that provide structural way to
@@ -83,9 +85,9 @@ introduce overloaded functions.
 
 Contexts ... blah blah... much better solution -- watch this:
 \begin{align*}
-	\tau   & ::= \forall \, a{\in}\kappa \, . \, \tau ~|~ \sigma \\
-	\sigma & ::= a ~|~ \sigma \rightarrow \sigma ~|~ \rho \sigma \\
-	\rho   & ::= a ~|~ \rho \sigma \\
+	\tau   & ::= \forall \, a {\in} \kappa \, . \, \tau ~|~ \sigma \\
+	\sigma & ::= a ~|~ \sigma \rightarrow \sigma ~|~ \rho \, \sigma \\
+	\rho   & ::= a ~|~ \rho \, \sigma \\
 	\kappa & ::= c ~|~ \star ~|~ \kappa \rightarrow \kappa ~|~ \kappa \cap \kappa \\
 \end{align*}
 where
@@ -101,19 +103,20 @@ that as classes are sets of type constructors, they are kinds.
 Not only that, they form obvious structure -- half lattice with operation
 \(\cap\).
 
-Defining classes creates new kind constants, instances fills them.
+Type class declaration creates new kind constant.
+Instances fill selected classes (constants explicitly, others implicitly).
+Analogously \texttt{data} creates and fills types.
 
-Intersection have sense (understand possibility of not-emptiness) only
-on kinds with same sort (\(\texttt{Eq} \cap \texttt{Functor}\) feels wrong
-on first sight).
+% XXX: Is it really sort that matters?
+Intersection have sense (understand possibility of not-emptiness) only on
+kinds with same sort(?) (\(\texttt{Eq} \cap \texttt{Functor}\) even feels wrong).
 
-%XXX: Eventually remove this text and if possible replace
-%     with 15 pages of text ;-).
+Inclusion diagrams accompanying some distinguished type classes can be found for
+example in \cite{typeclassopedia}.
+
+% XXX: Eventually remove this text and if possible replace
+%      with 15 pages of text ;-).
 This was expected to generate like 15 pages in thesis \verb~:-/~.
-
-\section{Haskell type system}
-
-\cite{haskell2010}
 
 \chapter{Extensions}
 
