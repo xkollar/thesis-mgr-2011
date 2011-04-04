@@ -76,6 +76,18 @@ Haskell, type system, type extension
 
 (Part of introduction?)\dots
 
+As you can find not only \cite{haskell2010}, Haskell uses a traditional
+Hindley-Milner polymorphic type system to provide a static type
+semantics enriched with type classes that provide structural way to
+introduce overloaded functions.
+
+Contexts ... blah blah... much better solution -- watch this:
+\begin{align*}
+	\tau   & ::= \forall a \in \kappa . \tau \| \sigma \\
+	\sigma & ::= a \| \sigma \rightarrow \sigma | \rho \sigma
+	\rho   & ::= a \| \rho \sigma
+\end{align*}
+
 \section{Haskell type system}
 
 \cite{haskell2010}
