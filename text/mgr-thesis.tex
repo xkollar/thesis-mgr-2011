@@ -1,5 +1,7 @@
 % vim: spell
 \documentclass[11pt,oneside,draft]{fithesis2}
+
+\usepackage[draft]{pgf}
 %\usepackage[slovak]{babel}
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
@@ -11,8 +13,10 @@
 %\usepackage{ae}
 \usepackage{fancyvrb}
 \usepackage{enumerate}
-\clubpenalty=10000
-\widowpenalty=10000
+\clubpenalty=1000
+\widowpenalty=1000
+\renewcommand{\baselinestretch}{1.08}
+
 
 \DefineVerbatimEnvironment{code}{Verbatim}
         { fontsize=\small
@@ -27,6 +31,7 @@
         }
 
 \newtheorem{lemma}{Lemma}
+\newtheorem{example}{Example}
 
 %\thesistitle{Rozšírenia typového systému pre Haskell}
 \thesistitle{Extensions of Haskell type system}
@@ -70,25 +75,60 @@ Haskell, type system, type extension
 
 \chapter{Introduction}
 
-\cite{barendregt:1992:lambda, libor}
-
 \chapter{Type system}
 
 (Part of introduction?)\dots
 
 \section{Haskell type system}
 
-As one can find not only \cite{haskell2010}, Haskell uses a traditional
+Before discussing extensions it would be desirable to describe
+original type system itself.
+As one can find not only in \cite{haskell2010}, Haskell uses a traditional
 Hindley-Milner polymorphic type system to provide a static type
 semantics enriched with type classes that provide structural way to
 introduce overloaded functions.
 
+\begin{example}~
+\[ \texttt{id} :: \forall a \in {\star} \, . \, a \]
+\[ \texttt{const} :: \forall a \in {\star} \, . \, \forall b \in {\star} \, . \, a \to b \to a \]
+\end{example}
+
+\begin{example}~
+\[ \texttt{1} :: \forall a \in \texttt {Num} \, . \, a \]
+\[ \texttt{elem} :: \forall a \in \texttt{Eq} \, . \, a \to [a] \to \texttt{Bool} \]
+\end{example}
+
+\begin{example}~
+\begin{code}
+ex :: (C1 a,C2 a) => a
+\end{code}
+\[ \texttt{ex} :: \forall \, a \in \texttt{C1} \cap \texttt{C2} \, . \, a \]
+\end{example}
+ 
+\begin{example}~
+\begin{code}
+ex :: (Eq (m a), Monad m) => m a -> a -> Bool
+ex x y = x == return y
+\end{code}
+\[ \texttt{ex} :: \forall m \in \texttt{Monad} \cap \emptyset \to \texttt{Eq} \, . \, \forall m \, a \in \texttt{Eq} \, . \, m a \to a \to \texttt{Bool} \]
+\end{example}
+
+\begin{example}~
+\begin{code}
+ex :: (Monad m, Eq (m a), Eq a) => m a -> a -> Bool
+ex x y = y == y && x == return y
+\end{code}
+\[ \texttt{ex} :: \forall m \in \texttt{Monad} \cap \texttt{Eq} \to \texttt{Eq} \, . \, \forall a \in \texttt{Eq} \, . \, m a \to a \to \texttt{Bool} \]
+\end{example}
+
+This leads to situation, where one th
+
 Contexts ... blah blah... much better solution -- watch this:
 \begin{align*}
-	\tau   & ::= \forall \, a {\in} \kappa \, . \, \tau ~|~ \sigma \\
-	\sigma & ::= a ~|~ \sigma \rightarrow \sigma ~|~ \rho \, \sigma \\
+	\tau   & ::= \forall \, a \in \kappa \, . \, \tau ~|~ \sigma \\
+	\sigma & ::= a ~|~ \sigma \to \sigma ~|~ \rho \, \sigma \\
 	\rho   & ::= a ~|~ \rho \, \sigma \\
-	\kappa & ::= c ~|~ \star ~|~ \kappa \rightarrow \kappa ~|~ \kappa \cap \kappa \\
+	\kappa & ::= c ~|~ \star ~|~ \kappa \to \kappa ~|~ \kappa \cap \kappa \\
 \end{align*}
 where
 \begin{itemize}
