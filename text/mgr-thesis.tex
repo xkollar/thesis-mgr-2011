@@ -105,12 +105,19 @@ ex :: (C1 a,C2 a) => a
 \[ \texttt{ex} :: \forall \, a \in \texttt{C1} \cap \texttt{C2} \, . \, a \]
 \end{example}
  
-\begin{example}~
+\begin{example}
+This one is ugly and points out some problems.
 \begin{code}
 ex :: (Eq (m a), Monad m) => m a -> a -> Bool
 ex x y = x == return y
 \end{code}
-\[ \texttt{ex} :: \forall m \in \texttt{Monad} \cap \emptyset \to \texttt{Eq} \, . \, \forall m \, a \in \texttt{Eq} \, . \, m a \to a \to \texttt{Bool} \]
+There are few possibilities how to deal with this. For example
+\[ \texttt{ex} :: \forall m \in \texttt{Monad} \cap \emptyset \to \texttt{Eq} \, . \, \forall m \, a \in \texttt{Eq} \, . \, m \, a \to a \to \texttt{Bool} \]
+but this would require to make possible quantification not only over variables but over applications too.
+We will rather stick with following alternative:
+\[ \texttt{ex} :: \forall a \in \star \, . \, forall m \in \texttt{Monad} \cap \{ a \} \to \texttt{Eq} \, . \, m \, a \to a \to \texttt{Bool} \]
+Both of this possibilities embodies some ``dependency'', that gives significance to order of quantifications.
+We will show how to deal with this later. % XXX : later... multiparam type classes.
 \end{example}
 
 \begin{example}~
@@ -123,7 +130,7 @@ ex x y = y == y && x == return y
 
 This leads to situation, where one th
 
-Contexts ... blah blah... much better solution -- watch this:
+Contexts, context reductions... blah blah... much better solution -- watch this:
 \begin{align*}
 	\tau   & ::= \forall \, a \in \kappa \, . \, \tau ~|~ \sigma \\
 	\sigma & ::= a ~|~ \sigma \to \sigma ~|~ \rho \, \sigma \\
@@ -157,6 +164,43 @@ example in \cite{typeclassopedia}.
 % XXX: Eventually remove this text and if possible replace
 %      with 15 pages of text ;-).
 This was expected to generate like 15 pages in thesis \verb~:-/~.
+
+\section{Removing type-class infrastructure}
+
+As noticed by many and underlined by actual implementation, type-classes can be removed
+from language with only little ``harm''.
+
+Let us have a look at how it can be done. Take following well known example.
+\begin{code}
+class Eq a where
+    (==), (/=) :: a -> a -> Bool
+\end{code}
+And definitions that employ this class.
+\begin{code}
+(==) :: Eq a => a -> a -> Bool
+elem :: Eq a => a -> [a] -> Bool
+elem = any . (==)
+f :: Eq a => a -> [[a]] -> Bool
+f = any . elem
+\end{code}
+
+This can be expressed in following way:
+\begin{code}
+type Eq a = (a -> a -> Bool,a -> a -> Bool)
+\end{code}
+with definitions
+\begin{code}
+(==) :: Eq a -> a -> a -> Bool
+(==) = fst
+
+elem :: Eq a -> a -> [a] -> Bool
+-- elem ((==),(/=)) = any . (==)
+-- or
+elem i = any . (==) i
+
+f :: Eq a -> a -> [[a]] -> Bool
+f i = any . elem i
+\end{code}
 
 \chapter{Extensions}
 
