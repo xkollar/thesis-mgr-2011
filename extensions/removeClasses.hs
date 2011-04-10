@@ -1,4 +1,6 @@
 
+{-# LANGUAGE Rank2Types #-}
+
 type Eq' a = (a -> a -> Bool,a -> a -> Bool)
 
 elem' :: Eq' a -> a -> [a] -> Bool
@@ -12,3 +14,8 @@ runEqBool f = f ((==),(/=)) where
 
 eq :: Eq' a -> a -> a -> Bool
 eq = fst
+
+type Monad' m = forall a b . (a -> m a,m a -> (a -> m b) -> m b)
+
+type MultiMonad' m a b = (a -> m a,m a -> (a -> m b) -> m b)
+
