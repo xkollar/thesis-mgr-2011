@@ -17,6 +17,7 @@
 \widowpenalty=1000
 \renewcommand{\baselinestretch}{1.08}
 
+\newcommand{\kindStar}{\star}
 
 \DefineVerbatimEnvironment{code}{Verbatim}
         { fontsize=\small
@@ -89,8 +90,8 @@ semantics enriched with type classes that provide structural way to
 introduce overloaded functions.
 
 \begin{example}~
-\[ \texttt{id} :: \forall a \in {\star} \, . \, a \]
-\[ \texttt{const} :: \forall a \in {\star} \, . \, \forall b \in {\star} \, . \, a \to b \to a \]
+\[ \texttt{id} :: \forall a \in {\kindStar} \, . \, a \]
+\[ \texttt{const} :: \forall a \in {\kindStar} \, . \, \forall b \in {\kindStar} \, . \, a \to b \to a \]
 \end{example}
 
 \begin{example}~
@@ -104,7 +105,7 @@ ex :: (C1 a,C2 a) => a
 \end{code}
 \[ \texttt{ex} :: \forall \, a \in \texttt{C1} \cap \texttt{C2} \, . \, a \]
 \end{example}
- 
+
 \begin{example}
 This one is ugly and points out some problems.
 \begin{code}
@@ -115,7 +116,7 @@ There are few possibilities how to deal with this. For example
 \[ \texttt{ex} :: \forall m \in \texttt{Monad} \cap \emptyset \to \texttt{Eq} \, . \, \forall m \, a \in \texttt{Eq} \, . \, m \, a \to a \to \texttt{Bool} \]
 but this would require to make possible quantification not only over variables but over applications too.
 We will rather stick with following alternative:
-\[ \texttt{ex} :: \forall a \in \star \, . \, forall m \in \texttt{Monad} \cap \{ a \} \to \texttt{Eq} \, . \, m \, a \to a \to \texttt{Bool} \]
+\[ \texttt{ex} :: \forall a \in \kindStar \, . \, forall m \in \texttt{Monad} \cap \{ a \} \to \texttt{Eq} \, . \, m \, a \to a \to \texttt{Bool} \]
 Both of this possibilities embodies some ``dependency'', that gives significance to order of quantifications.
 We will show how to deal with this later. % XXX : later... multiparam type classes.
 \end{example}
@@ -135,7 +136,7 @@ Contexts, context reductions... blah blah... much better solution -- watch this:
 	\tau   & ::= \forall \, a \in \kappa \, . \, \tau ~|~ \sigma \\
 	\sigma & ::= a ~|~ \sigma \to \sigma ~|~ \rho \, \sigma \\
 	\rho   & ::= a ~|~ \rho \, \sigma \\
-	\kappa & ::= c ~|~ \star ~|~ \kappa \to \kappa ~|~ \kappa \cap \kappa \\
+	\kappa & ::= c ~|~ \kindStar ~|~ \kappa \to \kappa ~|~ \kappa \cap \kappa \\
 \end{align*}
 where
 \begin{itemize}
@@ -183,7 +184,6 @@ elem = any . (==)
 f :: Eq a => a -> [[a]] -> Bool
 f = any . elem
 \end{code}
-
 This can be expressed in following way:
 \begin{code}
 type Eq a = (a -> a -> Bool,a -> a -> Bool)
@@ -202,6 +202,27 @@ f :: Eq a -> a -> [[a]] -> Bool
 f i = any . elem i
 \end{code}
 
+One may naturally wonder, how it would be with non-\(\kindStar\) classes.
+Take \texttt{Monad}.
+\begin{code}
+class Monad m where
+	return :: a -> m a
+	(>>=) :: m a -> (a -> m b) -> m b
+\end{code}
+(Function \texttt{fail} is omitted intentionally but can be added with
+no problem as curious reader try as simple exercise.)
+Most straightforward way how to express it would be
+\begin{code}
+type Monad m a b = (a -> m a,m a -> (a -> m b) -> m b)
+\end{code}
+But what have we done? This is not traditional \texttt{Monad} but
+multi-parameter. This is another example for multi-parameter type classes
+being natural. But how to do it intended way?
+\begin{code}
+type Monad m = forall a b . (a -> m a,m a -> (a -> m b) -> m b)
+\end{code}
+
+
 \chapter{Extensions}
 
 This chapters goes trough various type extensions showing examples
@@ -210,8 +231,9 @@ and where they differ.
 
 \section{Empty data declarations}
 
-This extension is implemented in \texttt{GHC} and can be enabled via
-\texttt{LANGUAGE} pragma \texttt{EmptyDataDecls}.
+% This extension is implemented in \texttt{GHC} and can be enabled via
+% \texttt{LANGUAGE} pragma \texttt{EmptyDataDecls}.
+This extension was included in standard in Haskell 2010.
 
 Extension \emph{empty data declarations} allows empty data declarations
 (without any data constructors). This is very natural as there is possible
