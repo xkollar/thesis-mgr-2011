@@ -115,9 +115,11 @@ ex x y = x == return y
 There are few possibilities how to deal with this. For example
 \[ \texttt{ex} :: \forall m \in \texttt{Monad} \cap \emptyset \to \texttt{Eq} \, . \, \forall m \, a \in \texttt{Eq} \, . \, m \, a \to a \to \texttt{Bool} \]
 but this would require to make possible quantification not only over variables but over applications too.
-We will rather stick with following alternative:
-\[ \texttt{ex} :: \forall a \in \kindStar \, . \, forall m \in \texttt{Monad} \cap \{ a \} \to \texttt{Eq} \, . \, m \, a \to a \to \texttt{Bool} \]
-Both of this possibilities embodies some ``dependency'', that gives significance to order of quantifications.
+% We will rather stick with following alternative:
+Alternatively, taking \(\{\_\}\) as a meta-operator mapping type to singleton kind,
+it is possible to express desired type by
+\[ \texttt{ex} :: \forall a \in \kindStar \, . \, \forall m \in \texttt{Monad} \cap \{ a \} \to \texttt{Eq} \, . \, m \, a \to a \to \texttt{Bool} \]
+Both mentioned possibilities embodies some ``dependency'', that gives significance to order of quantifications.
 We will show how to deal with this later. % XXX : later... multiparam type classes.
 \end{example}
 
