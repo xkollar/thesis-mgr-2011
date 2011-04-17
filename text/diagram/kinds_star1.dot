@@ -1,0 +1,29 @@
+digraph kinds {
+	graph [ranksep=0.25];
+	node [shape=box];
+
+	"\kindStar" -> "\texttt{Eq}";
+	"\kindStar" -> "\texttt{Enum}";
+	"\kindStar" -> "\texttt{Show}";
+	"\kindStar" -> "\texttt{Read}";
+	"\kindStar" -> "\texttt{Bounded}";
+	{rank=same; "\texttt{Read}"; "\texttt{Bounded}"; "\texttt{Enum}"; "\texttt{Eq}"; "\texttt{Show}"};
+	"\texttt{Eq}" -> "\texttt{Ord}";
+	"\texttt{Eq}" -> "\texttt{Num}";
+	"\texttt{Show}" -> "\texttt{Num}";
+	"\texttt{Num}" -> "\texttt{Real}";
+	"\texttt{Ord}" -> "\texttt{Real}";
+	"\texttt{Num}" -> "\texttt{Fractional}";
+	"\texttt{Fractional}" -> "\texttt{Floating}";
+	"\texttt{Ord}" -> "\texttt{Ix}";
+	"\texttt{Real}" -> "\texttt{Integral}";
+	"\texttt{Enum}" -> "\texttt{Integral}";
+	"\texttt{Real}" -> "\texttt{RealFrac}";
+	"\texttt{Fractional}" -> "\texttt{RealFrac}";
+	"\texttt{RealFrac}" -> "\texttt{RealFloat}";
+	"\texttt{Floating}" -> "\texttt{RealFloat}";
+	"\texttt{Integral}" -> "\emptyset" [style=dotted,color=gray];
+	"\texttt{RealFloat}" -> "\emptyset" [style=dotted,color=gray];
+	"\texttt{Read}" -> "\emptyset" [style=dotted,color=gray];
+	"\texttt{Bounded}" -> "\emptyset" [style=dotted,color=gray];
+}

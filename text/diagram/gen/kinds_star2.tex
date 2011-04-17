@@ -1,0 +1,143 @@
+
+\begin{tikzpicture}[>=latex,line join=bevel,]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Edge: \texttt{Eq} \cap \texttt{Read} -> \texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}
+  \draw [->] (196.79bp,124.08bp) .. controls (199.91bp,120.62bp) and (203.41bp,116.76bp)  .. (213.58bp,105.52bp);
+  % Edge: \texttt{Eq} \cap \texttt{Show} \cap \texttt{Read} -> \texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}
+  \draw [->] (195.6bp,82.47bp) .. controls (184.09bp,77.798bp) and (170.67bp,72.351bp)  .. (149.12bp,63.601bp);
+  % Edge: \texttt{Ord} \cap \texttt{Show} -> \texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}
+  \draw [->] (57.662bp,83.441bp) .. controls (67.824bp,78.707bp) and (79.99bp,73.039bp)  .. (100.41bp,63.523bp);
+  % Edge: \texttt{Eq} -> \texttt{Eq} \cap \texttt{Read}
+  \draw [->] (120.2bp,169.7bp) .. controls (129.92bp,164.72bp) and (142.63bp,158.22bp)  .. (163.31bp,147.62bp);
+  % Edge: \star -> \texttt{Read}
+  \draw [->] (172.02bp,209.32bp) .. controls (178.56bp,204.96bp) and (186.7bp,199.53bp)  .. (203.01bp,188.66bp);
+  % Edge: \texttt{Eq} \cap \texttt{Show} -> \texttt{Ord} \cap \texttt{Show}
+  \draw [->] (84.78bp,124.3bp) .. controls (77.557bp,119.9bp) and (69.215bp,114.83bp)  .. (52.699bp,104.77bp);
+  % Edge: \texttt{Eq} \cap \texttt{Read} -> \texttt{Ord} \cap \texttt{Read}
+  \draw [->] (168.45bp,124.3bp) .. controls (162bp,120bp) and (154.57bp,115.05bp)  .. (139.16bp,104.77bp);
+  % Edge: \texttt{Eq} -> \texttt{Ord}
+  \draw [->] (87.997bp,168.26bp) .. controls (79.995bp,163.39bp) and (70.108bp,157.37bp)  .. (52.367bp,146.57bp);
+  % Edge: \texttt{Read} -> \texttt{Eq} \cap \texttt{Read}
+  \draw [->] (210.67bp,167.4bp) .. controls (207.86bp,163.82bp) and (204.63bp,159.71bp)  .. (195.14bp,147.63bp);
+  % Edge: \texttt{Show} \cap \texttt{Read} -> \texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}
+  \draw [->] (260.64bp,125.4bp) .. controls (256.02bp,121.45bp) and (250.64bp,116.83bp)  .. (237.57bp,105.63bp);
+  % Edge: \texttt{Read} -> \texttt{Show} \cap \texttt{Read}
+  \draw [->] (232.63bp,167.4bp) .. controls (238.21bp,163.06bp) and (244.82bp,157.92bp)  .. (259.19bp,146.74bp);
+  % Edge: \star -> \texttt{Show}
+  \draw [->] (159bp,208.32bp) .. controls (159bp,205.45bp) and (159bp,202.19bp)  .. (159bp,188.72bp);
+  % Edge: \star -> \texttt{Eq}
+  \draw [->] (145.97bp,208.52bp) .. controls (140.64bp,204.65bp) and (134.3bp,200.03bp)  .. (120.09bp,189.7bp);
+  % Edge: \texttt{Show} -> \texttt{Eq} \cap \texttt{Show}
+  \draw [->] (145.12bp,167.4bp) .. controls (139.7bp,163.26bp) and (133.32bp,158.39bp)  .. (119.23bp,147.63bp);
+  % Edge: \texttt{Show} -> \texttt{Show} \cap \texttt{Read}
+  \draw [->] (180.27bp,169.38bp) .. controls (183.19bp,168.23bp) and (186.17bp,167.07bp)  .. (189bp,166bp) .. controls (203.22bp,160.62bp) and (218.88bp,154.95bp)  .. (242.57bp,146.56bp);
+  % Edge: \texttt{Ord} -> \texttt{Ord} \cap \texttt{Show}
+  \draw [->] (35bp,125.4bp) .. controls (35bp,122.14bp) and (35bp,118.44bp)  .. (35bp,104.74bp);
+  % Edge: \texttt{Eq} \cap \texttt{Show} -> \texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}
+  \draw [->] (136.16bp,124.74bp) .. controls (150.05bp,119.88bp) and (166.51bp,114.12bp)  .. (190.92bp,105.58bp);
+  % Edge: \texttt{Eq} -> \texttt{Eq} \cap \texttt{Show}
+  \draw [->] (104bp,166.08bp) .. controls (104bp,163.44bp) and (104bp,160.57bp)  .. (104bp,147.52bp);
+  % Edge: \texttt{Ord} \cap \texttt{Read} -> \texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}
+  \draw [->] (123bp,83.228bp) .. controls (123bp,80.286bp) and (123bp,76.996bp)  .. (123bp,63.559bp);
+  % Edge: \texttt{Ord} \cap \texttt{Show} \cap \texttt{Read} -> \emptyset
+  \pgfsetcolor{gray}
+  \draw [->,dotted] (123bp,42.228bp) .. controls (123bp,39.648bp) and (123bp,36.8bp)  .. (123bp,23.708bp);
+  % Edge: \texttt{Ord} -> \texttt{Ord} \cap \texttt{Read}
+  \pgfsetcolor{black}
+  \draw [->] (54.095bp,126.89bp) .. controls (65.051bp,121.66bp) and (79.08bp,114.96bp)  .. (100.84bp,104.58bp);
+  % Node: \texttt{Show}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (180bp,189bp) -- (138bp,189bp) -- (138bp,168bp) -- (180bp,168bp) -- cycle;
+  \draw (159bp,178bp) node {$\texttt{Show}$};
+\end{scope}
+  % Node: \texttt{Ord}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (54bp,147bp) -- (16bp,147bp) -- (16bp,126bp) -- (54bp,126bp) -- cycle;
+  \draw (35bp,136bp) node {$\texttt{Ord}$};
+\end{scope}
+  % Node: \texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (272bp,106bp) -- (176bp,106bp) -- (176bp,83bp) -- (272bp,83bp) -- cycle;
+  \draw (224bp,94bp) node {$\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}$};
+\end{scope}
+  % Node: \texttt{Show} \cap \texttt{Read}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (310bp,147bp) -- (236bp,147bp) -- (236bp,126bp) -- (310bp,126bp) -- cycle;
+  \draw (273bp,136bp) node {$\texttt{Show} \cap \texttt{Read}$};
+\end{scope}
+  % Node: \texttt{Ord} \cap \texttt{Read}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (158bp,105bp) -- (88bp,105bp) -- (88bp,84bp) -- (158bp,84bp) -- cycle;
+  \draw (123bp,94bp) node {$\texttt{Ord} \cap \texttt{Read}$};
+\end{scope}
+  % Node: \texttt{Eq} \cap \texttt{Show}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (136bp,148bp) -- (72bp,148bp) -- (72bp,125bp) -- (136bp,125bp) -- cycle;
+  \draw (104bp,136bp) node {$\texttt{Eq} \cap \texttt{Show}$};
+\end{scope}
+  % Node: \star
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (172bp,228bp) -- (146bp,228bp) -- (146bp,209bp) -- (172bp,209bp) -- cycle;
+  \draw (159bp,218bp) node {$\star$};
+\end{scope}
+  % Node: \texttt{Eq}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (120bp,190bp) -- (88bp,190bp) -- (88bp,167bp) -- (120bp,167bp) -- cycle;
+  \draw (104bp,178bp) node {$\texttt{Eq}$};
+\end{scope}
+  % Node: \texttt{Eq} \cap \texttt{Read}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (218bp,148bp) -- (154bp,148bp) -- (154bp,125bp) -- (218bp,125bp) -- cycle;
+  \draw (186bp,136bp) node {$\texttt{Eq} \cap \texttt{Read}$};
+\end{scope}
+  % Node: \texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (174bp,64bp) -- (72bp,64bp) -- (72bp,43bp) -- (174bp,43bp) -- cycle;
+  \draw (123bp,53bp) node {$\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}$};
+\end{scope}
+  % Node: \emptyset
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (136bp,24bp) -- (110bp,24bp) -- (110bp,1bp) -- (136bp,1bp) -- cycle;
+  \draw (123bp,12bp) node {$\emptyset$};
+\end{scope}
+  % Node: \texttt{Ord} \cap \texttt{Show}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (70bp,105bp) -- (0bp,105bp) -- (0bp,84bp) -- (70bp,84bp) -- cycle;
+  \draw (35bp,94bp) node {$\texttt{Ord} \cap \texttt{Show}$};
+\end{scope}
+  % Node: \texttt{Read}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (240bp,189bp) -- (198bp,189bp) -- (198bp,168bp) -- (240bp,168bp) -- cycle;
+  \draw (219bp,178bp) node {$\texttt{Read}$};
+\end{scope}
+%
+\end{tikzpicture}
+

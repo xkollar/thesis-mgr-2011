@@ -1,7 +1,9 @@
 % vim: spell
 \documentclass[11pt,oneside,draft]{fithesis2}
 
-\usepackage[draft]{pgf}
+%\usepackage[draft]{pgf}
+\usepackage{tikz}
+
 %\usepackage[slovak]{babel}
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
@@ -17,7 +19,8 @@
 \widowpenalty=1000
 \renewcommand{\baselinestretch}{1.08}
 
-\newcommand{\kindStar}{\star}
+%\newcommand{\kindStar}{\star}
+\input{someprelude}
 
 \DefineVerbatimEnvironment{code}{Verbatim}
         { fontsize=\small
@@ -88,6 +91,27 @@ As one can find not only in \cite{haskell2010}, Haskell uses a traditional
 Hindley-Milner polymorphic type system to provide a static type
 semantics enriched with type classes that provide structural way to
 introduce overloaded functions.
+
+\noindent
+\begin{figure}
+	\centering
+	\scalebox{0.9}{ \input{diagram/gen/kinds_star1} }
+	\caption{Explicit \(\kindStar\) Prelude classes}
+\end{figure}
+
+\noindent
+\begin{figure}
+	\centering
+	\scalebox{1.0}{ \input{diagram/gen/kinds_star2} }
+	\caption{Alternative view for some \(\kindStar\) classes}
+\end{figure}
+
+\noindent
+\begin{figure}
+	\centering
+	\scalebox{1.0}{ \input{diagram/gen/kinds_star_star} }
+	\caption{Some \(\emptyset \to \kindStar\) classes}
+\end{figure}
 
 \begin{example}~
 \[ \texttt{id} :: \forall a \in {\kindStar} \, . \, a \]
