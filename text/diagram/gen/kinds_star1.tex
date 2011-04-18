@@ -4,98 +4,97 @@
 %%
 \pgfsetcolor{black}
   % Edge: \texttt{Eq} -> \texttt{Num}
-  \draw [->] (227.61bp,204.36bp) .. controls (232.91bp,200.42bp) and (238.92bp,195.93bp)  .. (252.67bp,185.69bp);
+  \draw [->] (167.61bp,204.36bp) .. controls (172.91bp,200.42bp) and (178.92bp,195.93bp)  .. (192.67bp,185.69bp);
   % Edge: \texttt{Show} -> \texttt{Num}
-  \draw [->] (267bp,205.23bp) .. controls (267bp,202.29bp) and (267bp,199bp)  .. (267bp,185.56bp);
-  % Edge: \kindStar -> \texttt{Enum}
-  \draw [->] (157bp,246.32bp) .. controls (157bp,243.45bp) and (157bp,240.19bp)  .. (157bp,226.72bp);
+  \draw [->] (207bp,205.23bp) .. controls (207bp,202.29bp) and (207bp,199bp)  .. (207bp,185.56bp);
   % Edge: \kindStar -> \texttt{Read}
-  \draw [->] (143.79bp,253.06bp) .. controls (125.17bp,248.8bp) and (89.974bp,240.34bp)  .. (42.187bp,224.85bp);
+  \draw [->] (138.79bp,252.83bp) .. controls (120.95bp,248.45bp) and (88.037bp,240.01bp)  .. (42.198bp,224.81bp);
+  % Edge: \kindStar -> \texttt{Enum}
+  \draw [->] (165.04bp,252.16bp) .. controls (186.09bp,245.97bp) and (228.14bp,233.61bp)  .. (266.82bp,222.23bp);
+  % Edge: \texttt{Ix} -> \emptyset
+  \pgfsetcolor{gray}
+  \draw [->,dotted] (102.47bp,124.08bp) .. controls (101.48bp,103.92bp) and (99.364bp,60.469bp)  .. (97.575bp,23.787bp);
   % Edge: \kindStar -> \texttt{Show}
-  \draw [->] (170.09bp,251.62bp) .. controls (184.37bp,246.79bp) and (208.09bp,238.66bp)  .. (245.74bp,224.64bp);
+  \pgfsetcolor{black}
+  \draw [->] (165.03bp,246.52bp) .. controls (170.71bp,242.39bp) and (177.54bp,237.42bp)  .. (192.51bp,226.54bp);
   % Edge: \texttt{Floating} -> \texttt{RealFloat}
-  \draw [->] (296.72bp,82.361bp) .. controls (287.84bp,77.922bp) and (277.59bp,72.796bp)  .. (259.09bp,63.547bp);
+  \draw [->] (157.85bp,82.361bp) .. controls (158.05bp,79.7bp) and (158.26bp,76.793bp)  .. (159.22bp,63.685bp);
   % Edge: \texttt{RealFloat} -> \emptyset
   \pgfsetcolor{gray}
-  \draw [->,dotted] (205.81bp,42.441bp) .. controls (183.86bp,35.241bp) and (155.32bp,25.882bp)  .. (126.11bp,16.3bp);
+  \draw [->,dotted] (143.78bp,42.441bp) .. controls (136.17bp,37.493bp) and (127bp,31.525bp)  .. (110.41bp,20.725bp);
   % Edge: \texttt{Fractional} -> \texttt{Floating}
   \pgfsetcolor{black}
-  \draw [->] (317.79bp,124.23bp) .. controls (317.98bp,121.65bp) and (318.19bp,118.8bp)  .. (319.14bp,105.71bp);
+  \draw [->] (169.53bp,124.23bp) .. controls (168.35bp,121.38bp) and (167.04bp,118.21bp)  .. (161.85bp,105.71bp);
   % Edge: \texttt{Num} -> \texttt{Fractional}
-  \draw [->] (280.14bp,164.49bp) .. controls (284.92bp,160.66bp) and (290.46bp,156.23bp)  .. (303.78bp,145.58bp);
+  \draw [->] (198.33bp,164.49bp) .. controls (195.55bp,161.12bp) and (192.38bp,157.28bp)  .. (182.73bp,145.58bp);
   % Edge: \kindStar -> \texttt{Eq}
-  \draw [->] (170.03bp,246.52bp) .. controls (175.36bp,242.65bp) and (181.7bp,238.03bp)  .. (195.91bp,227.7bp);
+  \draw [->] (152bp,246.32bp) .. controls (152bp,243.67bp) and (152bp,240.7bp)  .. (152bp,227.59bp);
   % Edge: \texttt{Real} -> \texttt{Integral}
-  \draw [->] (219.66bp,125.49bp) .. controls (209.11bp,120.79bp) and (196.09bp,114.99bp)  .. (174.81bp,105.5bp);
-  % Edge: \texttt{Real} -> \texttt{RealFrac}
-  \draw [->] (240.21bp,124.23bp) .. controls (240bp,121.29bp) and (239.76bp,118bp)  .. (238.77bp,104.56bp);
-  % Edge: \texttt{Enum} -> \texttt{Integral}
-  \draw [->] (156.29bp,205.17bp) .. controls (154.98bp,185.17bp) and (152.15bp,142.07bp)  .. (149.77bp,105.69bp);
-  % Edge: \texttt{Bounded} -> \emptyset
-  \pgfsetcolor{gray}
-  \draw [->,dotted] (89bp,205.26bp) .. controls (89bp,189.74bp) and (89bp,160.17bp)  .. (89bp,135bp) .. controls (89bp,135bp) and (89bp,135bp)  .. (89bp,94bp) .. controls (89bp,72.706bp) and (96.547bp,49.509bp)  .. (107.31bp,23.637bp);
-  % Edge: \texttt{Ord} -> \texttt{Ix}
-  \pgfsetcolor{black}
-  \draw [->] (204.43bp,164.49bp) .. controls (202.44bp,161.3bp) and (200.18bp,157.69bp)  .. (192.61bp,145.58bp);
-  % Edge: \texttt{Eq} -> \texttt{Ord}
-  \draw [->] (211.72bp,204.36bp) .. controls (211.65bp,201.7bp) and (211.58bp,198.79bp)  .. (211.26bp,185.69bp);
-  % Edge: \texttt{Ord} -> \texttt{Real}
-  \draw [->] (218.88bp,164.49bp) .. controls (221.34bp,161.21bp) and (224.14bp,157.48bp)  .. (233.07bp,145.58bp);
-  % Edge: \texttt{Num} -> \texttt{Real}
-  \draw [->] (260.17bp,164.49bp) .. controls (258.1bp,161.3bp) and (255.75bp,157.69bp)  .. (247.88bp,145.58bp);
-  % Edge: \texttt{Fractional} -> \texttt{RealFrac}
-  \draw [->] (296.66bp,124.44bp) .. controls (287.72bp,119.8bp) and (277.05bp,114.27bp)  .. (258.28bp,104.52bp);
+  \draw [->] (268.28bp,124.44bp) .. controls (275.57bp,120.24bp) and (284.13bp,115.29bp)  .. (301.03bp,105.53bp);
   % Edge: \texttt{Read} -> \emptyset
   \pgfsetcolor{gray}
-  \draw [->,dotted] (24.255bp,205.37bp) .. controls (28.666bp,190bp) and (36bp,160.6bp)  .. (36bp,135bp) .. controls (36bp,135bp) and (36bp,135bp)  .. (36bp,94bp) .. controls (36bp,61.56bp) and (68.42bp,36.694bp)  .. (99.938bp,18.326bp);
+  \draw [->,dotted] (21bp,205.26bp) .. controls (21bp,189.74bp) and (21bp,160.17bp)  .. (21bp,135bp) .. controls (21bp,135bp) and (21bp,135bp)  .. (21bp,94bp) .. controls (21bp,62.07bp) and (52.381bp,37.317bp)  .. (83.762bp,18.559bp);
+  % Edge: \texttt{Enum} -> \texttt{Integral}
+  \pgfsetcolor{black}
+  \draw [->] (290.93bp,205.17bp) .. controls (296.36bp,185.08bp) and (308.1bp,141.69bp)  .. (317.84bp,105.69bp);
+  % Edge: \texttt{Bounded} -> \emptyset
+  \pgfsetcolor{gray}
+  \draw [->,dotted] (82.342bp,205.46bp) .. controls (73.504bp,190.43bp) and (59bp,161.69bp)  .. (59bp,135bp) .. controls (59bp,135bp) and (59bp,135bp)  .. (59bp,94bp) .. controls (59bp,71.309bp) and (71.127bp,48.087bp)  .. (87.607bp,23.71bp);
+  % Edge: \texttt{Ord} -> \texttt{Ix}
+  \pgfsetcolor{black}
+  \draw [->] (138.39bp,164.49bp) .. controls (133.8bp,160.66bp) and (128.48bp,156.23bp)  .. (115.69bp,145.58bp);
+  % Edge: \texttt{Eq} -> \texttt{Ord}
+  \draw [->] (151.72bp,204.36bp) .. controls (151.65bp,201.7bp) and (151.58bp,198.79bp)  .. (151.26bp,185.69bp);
+  % Edge: \texttt{Ord} -> \texttt{Real}
+  \draw [->] (170.09bp,167.29bp) .. controls (184.05bp,161.65bp) and (203.27bp,153.88bp)  .. (228.91bp,143.52bp);
+  % Edge: \texttt{Num} -> \texttt{Real}
+  \draw [->] (218.3bp,164.49bp) .. controls (222.22bp,160.84bp) and (226.72bp,156.65bp)  .. (238.63bp,145.58bp);
+  % Edge: \texttt{Fractional} -> \texttt{RealFrac}
+  \draw [->] (190.74bp,124.44bp) .. controls (197.66bp,120.08bp) and (205.84bp,114.92bp)  .. (222.09bp,104.67bp);
+  % Edge: \texttt{Real} -> \texttt{RealFrac}
+  \draw [->] (247.11bp,124.23bp) .. controls (246.3bp,121.19bp) and (245.38bp,117.78bp)  .. (241.83bp,104.56bp);
   % Edge: \texttt{Integral} -> \emptyset
-  \draw [->,dotted] (143.84bp,82.251bp) .. controls (138.23bp,69.464bp) and (129.14bp,48.756bp)  .. (118.15bp,23.727bp);
+  \pgfsetcolor{gray}
+  \draw [->,dotted] (297.66bp,82.42bp) .. controls (274.33bp,71.137bp) and (237.25bp,53.979bp)  .. (204bp,42bp) .. controls (175.58bp,31.763bp) and (141.91bp,22.827bp)  .. (110.04bp,15.008bp);
   % Edge: \texttt{RealFrac} -> \texttt{RealFloat}
   \pgfsetcolor{black}
-  \draw [->] (238bp,83.228bp) .. controls (238bp,80.286bp) and (238bp,76.996bp)  .. (238bp,63.559bp);
+  \draw [->] (218.66bp,83.441bp) .. controls (209.72bp,78.803bp) and (199.05bp,73.268bp)  .. (180.28bp,63.523bp);
   % Edge: \kindStar -> \texttt{Bounded}
-  \draw [->] (143.89bp,248.29bp) .. controls (135.93bp,243.61bp) and (125.49bp,237.46bp)  .. (106.96bp,226.56bp);
-  % Node: \texttt{Real}
-\begin{scope}
-  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-  \pgfsetstrokecolor{strokecol}
-  \draw (262bp,146bp) -- (220bp,146bp) -- (220bp,125bp) -- (262bp,125bp) -- cycle;
-  \draw (241bp,135bp) node {$\texttt{Real}$};
-\end{scope}
+  \draw [->] (138.95bp,247.71bp) .. controls (131.78bp,243.16bp) and (122.64bp,237.36bp)  .. (105.64bp,226.56bp);
   % Node: \texttt{Show}
 \begin{scope}
   \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
   \pgfsetstrokecolor{strokecol}
-  \draw (288bp,227bp) -- (246bp,227bp) -- (246bp,206bp) -- (288bp,206bp) -- cycle;
-  \draw (267bp,216bp) node {$\texttt{Show}$};
+  \draw (228bp,227bp) -- (186bp,227bp) -- (186bp,206bp) -- (228bp,206bp) -- cycle;
+  \draw (207bp,216bp) node {$\texttt{Show}$};
 \end{scope}
   % Node: \texttt{Ord}
 \begin{scope}
   \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
   \pgfsetstrokecolor{strokecol}
-  \draw (230bp,186bp) -- (192bp,186bp) -- (192bp,165bp) -- (230bp,165bp) -- cycle;
-  \draw (211bp,175bp) node {$\texttt{Ord}$};
+  \draw (170bp,186bp) -- (132bp,186bp) -- (132bp,165bp) -- (170bp,165bp) -- cycle;
+  \draw (151bp,175bp) node {$\texttt{Ord}$};
 \end{scope}
   % Node: \texttt{Enum}
 \begin{scope}
   \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
   \pgfsetstrokecolor{strokecol}
-  \draw (178bp,227bp) -- (136bp,227bp) -- (136bp,206bp) -- (178bp,206bp) -- cycle;
-  \draw (157bp,216bp) node {$\texttt{Enum}$};
+  \draw (309bp,227bp) -- (267bp,227bp) -- (267bp,206bp) -- (309bp,206bp) -- cycle;
+  \draw (288bp,216bp) node {$\texttt{Enum}$};
 \end{scope}
   % Node: \texttt{Ix}
 \begin{scope}
   \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
   \pgfsetstrokecolor{strokecol}
-  \draw (202bp,146bp) -- (170bp,146bp) -- (170bp,125bp) -- (202bp,125bp) -- cycle;
-  \draw (186bp,135bp) node {$\texttt{Ix}$};
+  \draw (119bp,146bp) -- (87bp,146bp) -- (87bp,125bp) -- (119bp,125bp) -- cycle;
+  \draw (103bp,135bp) node {$\texttt{Ix}$};
 \end{scope}
   % Node: \texttt{Integral}
 \begin{scope}
   \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
   \pgfsetstrokecolor{strokecol}
-  \draw (181bp,106bp) -- (117bp,106bp) -- (117bp,83bp) -- (181bp,83bp) -- cycle;
-  \draw (149bp,94bp) node {$\texttt{Integral}$};
+  \draw (353bp,106bp) -- (289bp,106bp) -- (289bp,83bp) -- (353bp,83bp) -- cycle;
+  \draw (321bp,94bp) node {$\texttt{Integral}$};
 \end{scope}
   % Node: \texttt{Bounded}
 \begin{scope}
@@ -108,57 +107,64 @@
 \begin{scope}
   \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
   \pgfsetstrokecolor{strokecol}
-  \draw (170bp,266bp) -- (144bp,266bp) -- (144bp,247bp) -- (170bp,247bp) -- cycle;
-  \draw (157bp,256bp) node {$\kindStar$};
-\end{scope}
-  % Node: \texttt{RealFrac}
-\begin{scope}
-  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-  \pgfsetstrokecolor{strokecol}
-  \draw (270bp,105bp) -- (206bp,105bp) -- (206bp,84bp) -- (270bp,84bp) -- cycle;
-  \draw (238bp,94bp) node {$\texttt{RealFrac}$};
-\end{scope}
-  % Node: \texttt{Fractional}
-\begin{scope}
-  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-  \pgfsetstrokecolor{strokecol}
-  \draw (354bp,146bp) -- (280bp,146bp) -- (280bp,125bp) -- (354bp,125bp) -- cycle;
-  \draw (317bp,135bp) node {$\texttt{Fractional}$};
-\end{scope}
-  % Node: \texttt{Floating}
-\begin{scope}
-  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-  \pgfsetstrokecolor{strokecol}
-  \draw (352bp,106bp) -- (288bp,106bp) -- (288bp,83bp) -- (352bp,83bp) -- cycle;
-  \draw (320bp,94bp) node {$\texttt{Floating}$};
-\end{scope}
-  % Node: \texttt{Eq}
-\begin{scope}
-  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
-  \pgfsetstrokecolor{strokecol}
-  \draw (228bp,228bp) -- (196bp,228bp) -- (196bp,205bp) -- (228bp,205bp) -- cycle;
-  \draw (212bp,216bp) node {$\texttt{Eq}$};
+  \draw (165bp,266bp) -- (139bp,266bp) -- (139bp,247bp) -- (165bp,247bp) -- cycle;
+  \draw (152bp,256bp) node {$\kindStar$};
 \end{scope}
   % Node: \texttt{RealFloat}
 \begin{scope}
   \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
   \pgfsetstrokecolor{strokecol}
-  \draw (273bp,64bp) -- (203bp,64bp) -- (203bp,43bp) -- (273bp,43bp) -- cycle;
-  \draw (238bp,53bp) node {$\texttt{RealFloat}$};
+  \draw (195bp,64bp) -- (125bp,64bp) -- (125bp,43bp) -- (195bp,43bp) -- cycle;
+  \draw (160bp,53bp) node {$\texttt{RealFloat}$};
 \end{scope}
-  % Node: \emptyset
+  % Node: \texttt{RealFrac}
 \begin{scope}
   \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
   \pgfsetstrokecolor{strokecol}
-  \draw (126bp,24bp) -- (100bp,24bp) -- (100bp,1bp) -- (126bp,1bp) -- cycle;
-  \draw (113bp,12bp) node {$\emptyset$};
+  \draw (271bp,105bp) -- (207bp,105bp) -- (207bp,84bp) -- (271bp,84bp) -- cycle;
+  \draw (239bp,94bp) node {$\texttt{RealFrac}$};
+\end{scope}
+  % Node: \texttt{Fractional}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (211bp,146bp) -- (137bp,146bp) -- (137bp,125bp) -- (211bp,125bp) -- cycle;
+  \draw (174bp,135bp) node {$\texttt{Fractional}$};
+\end{scope}
+  % Node: \texttt{Floating}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (189bp,106bp) -- (125bp,106bp) -- (125bp,83bp) -- (189bp,83bp) -- cycle;
+  \draw (157bp,94bp) node {$\texttt{Floating}$};
+\end{scope}
+  % Node: \texttt{Real}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (271bp,146bp) -- (229bp,146bp) -- (229bp,125bp) -- (271bp,125bp) -- cycle;
+  \draw (250bp,135bp) node {$\texttt{Real}$};
 \end{scope}
   % Node: \texttt{Num}
 \begin{scope}
   \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
   \pgfsetstrokecolor{strokecol}
-  \draw (286bp,186bp) -- (248bp,186bp) -- (248bp,165bp) -- (286bp,165bp) -- cycle;
-  \draw (267bp,175bp) node {$\texttt{Num}$};
+  \draw (226bp,186bp) -- (188bp,186bp) -- (188bp,165bp) -- (226bp,165bp) -- cycle;
+  \draw (207bp,175bp) node {$\texttt{Num}$};
+\end{scope}
+  % Node: \emptyset
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (110bp,24bp) -- (84bp,24bp) -- (84bp,1bp) -- (110bp,1bp) -- cycle;
+  \draw (97bp,12bp) node {$\emptyset$};
+\end{scope}
+  % Node: \texttt{Eq}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (168bp,228bp) -- (136bp,228bp) -- (136bp,205bp) -- (168bp,205bp) -- cycle;
+  \draw (152bp,216bp) node {$\texttt{Eq}$};
 \end{scope}
   % Node: \texttt{Read}
 \begin{scope}

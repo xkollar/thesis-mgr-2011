@@ -16,6 +16,7 @@ digraph kinds {
 	"\texttt{Num}" -> "\texttt{Fractional}";
 	"\texttt{Fractional}" -> "\texttt{Floating}";
 	"\texttt{Ord}" -> "\texttt{Ix}";
+	{rank=same; "\texttt{Real}"; "\texttt{Fractional}"; "\texttt{Ix}"};
 	"\texttt{Real}" -> "\texttt{Integral}";
 	"\texttt{Enum}" -> "\texttt{Integral}";
 	"\texttt{Real}" -> "\texttt{RealFrac}";
@@ -23,6 +24,7 @@ digraph kinds {
 	"\texttt{RealFrac}" -> "\texttt{RealFloat}";
 	"\texttt{Floating}" -> "\texttt{RealFloat}";
 	"\texttt{Integral}" -> "\emptyset" [style=dotted,color=gray];
+	"\texttt{Ix}" -> "\emptyset" [style=dotted,color=gray];
 	"\texttt{RealFloat}" -> "\emptyset" [style=dotted,color=gray];
 	"\texttt{Read}" -> "\emptyset" [style=dotted,color=gray];
 	"\texttt{Bounded}" -> "\emptyset" [style=dotted,color=gray];
