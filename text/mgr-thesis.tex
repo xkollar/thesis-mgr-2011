@@ -9,16 +9,18 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref}
-\usepackage{lmodern}
 
+\usepackage{lmodern}
 \usepackage{amsmath,amsthm,amsfonts}
 %\usepackage{ae}
+
 \usepackage{fancyvrb}
 \usepackage{enumerate}
 \clubpenalty=1000
 \widowpenalty=1000
 \renewcommand{\baselinestretch}{1.08}
 
+%% Symbols used in generated graphics
 %\newcommand{\kindStar}{\star}
 \input{someprelude}
 
@@ -61,7 +63,7 @@
 \end{ThesisDeclaration}
 
 \begin{ThesisThanks}
-I would like to thank to Libor, Zuzana and Mom.
+I would like to thank to Libor, Zuzana and mommy.
 \end{ThesisThanks}
 
 \begin{ThesisAbstract}
@@ -124,7 +126,7 @@ introduce overloaded functions.
 \end{figure}
 
 \begin{example}~
-\[ \texttt{id} :: \forall a \in {\kindStar} \, . \, a \]
+\[ \texttt{id} :: \forall a \in {\kindStar} \, . \, a \to a \]
 \[ \texttt{const} :: \forall a \in {\kindStar} \, . \, \forall b \in {\kindStar} \, . \, a \to b \to a \]
 \end{example}
 
