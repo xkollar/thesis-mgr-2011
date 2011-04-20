@@ -85,15 +85,18 @@ Haskell, type system, type extension
 
 % XXX: Move this to introduction?
 Talking about extensions of type system requires understanding what type system is.
-In this work we will under term type system understand (similarly as
-\cite{pierce:2002:types,barendregt:1992:lambdaProc}) formal system provided that
+In this work we will understand type system (similarly as
+\cite{pierce:2002:types,barendregt:1992:lambdaProc}) a formal system providing
 
 \begin{itemize}
-	\item Safety
-	\item Optimization
-	\item Documentation
-	\item Abstraction
+	\item safety~-- meaningless or invalid code can be detected at compile time,
+	\item optimization~-- aaa,
+	\item documentation~-- aaa,
+	\item abstraction~-- aaa,
+	\item specification~-- aaa.
 \end{itemize}
+
+Static typing, Strong typing, \dots
 
 \section{Haskell type system}
 
@@ -164,7 +167,7 @@ We will show how to deal with this later. % XXX : later... multiparam type class
 ex :: (Monad m, Eq (m a), Eq a) => m a -> a -> Bool
 ex x y = y == y && x == return y
 \end{code}
-\[ \texttt{ex} :: \forall m \in \texttt{Monad} \cap \texttt{Eq} \to \texttt{Eq} \, . \, \forall a \in \texttt{Eq} \, . \, m a \to a \to \texttt{Bool} \]
+\[ \texttt{ex} :: \forall m \in \texttt{Monad} \cap (\texttt{Eq} \to \texttt{Eq}) \, . \, \forall a \in \texttt{Eq} \, . \, m a \to a \to \texttt{Bool} \]
 \end{example}
 
 This leads to situation, where one th
@@ -181,13 +184,12 @@ where
 	\item \(a\) stands for type variable,
 	\item \(c\) stands for kind constant,
 	\item \(\tau\) represents types,
-	\item and \(\kappa\) represents types kinds.
+	\item and \(\kappa\) represents kinds.
 \end{itemize}
 
 Key in understanding this fact (noticed by \cite{libor}),
 that as classes are sets of type constructors, they are kinds.
-Not only that, they form obvious structure -- half lattice with operation
-\(\cap\).
+Not only that, they form obvious structure~-- intersection-semilattice.
 
 Type class declaration creates new kind constant.
 Instances fill selected classes (constants explicitly, others implicitly).
@@ -207,9 +209,9 @@ This was expected to generate like 15 pages in thesis \verb~:-/~.
 \section{Removing type-class infrastructure}
 
 As noticed by many and underlined by actual implementation, type-classes can be removed
-from language with only little ``harm''.
+from the language with only little ``harm''.
 
-Let us have a look at how it can be done. Take following well known example.
+Let us have a look at how it can be done. Take the following well known example.
 \begin{code}
 class Eq a where
     (==), (/=) :: a -> a -> Bool
@@ -248,7 +250,7 @@ class Monad m where
 	(>>=) :: m a -> (a -> m b) -> m b
 \end{code}
 (Function \texttt{fail} is omitted intentionally but can be added with
-no problem as curious reader try as simple exercise.)
+no problem.)
 Most straightforward way how to express it would be
 \begin{code}
 type Monad m a b = (a -> m a,m a -> (a -> m b) -> m b)
@@ -271,7 +273,7 @@ and where they differ.
 
 % This extension is implemented in \texttt{GHC} and can be enabled via
 % \texttt{LANGUAGE} pragma \texttt{EmptyDataDecls}.
-This extension was included in standard in Haskell 2010.
+The extension described in this paragraph was included in Haskell 2010 standard.
 
 Extension \emph{empty data declarations} allows empty data declarations
 (without any data constructors). This is very natural as there is possible
@@ -382,8 +384,8 @@ newtype Count a = Count Integer
 plus :: Count a -> Count a -> Count a
 Count x `plus` Count y = Count (x + y)
 \end{code}
-Most interesting thing here is function \texttt{plus}, that itself has more general type, but
-by narrowing it down to more specific one we get function that allows us
+The most interesting thing here is function \texttt{plus}, that itself has a more general type, but
+by narrowing it down to more specific one we get a function that allows us
 adding up oranges with oranges, apples with apples, but forbids any other combinations
 of apples and oranges. Advantage of this solution is that it is polymorphic
 and we do not need to separately write code for apples and oranges.
