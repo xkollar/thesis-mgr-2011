@@ -88,13 +88,14 @@ Talking about extensions of type system requires understanding what type system 
 In this work we will understand type system (similarly as
 \cite{pierce:2002:types,barendregt:1992:lambdaProc}) a formal system providing
 
-\begin{itemize}
-	\item safety~-- meaningless or invalid code can be detected at compile time,
-	\item optimization~-- aaa,
-	\item documentation~-- aaa,
-	\item abstraction~-- aaa,
-	\item specification~-- aaa.
-\end{itemize}
+\begin{description}
+	\item[safety] -- meaningless or invalid code can be detected at compile time,
+	\item[optimization] -- useful information might be obtained as a by-product of static type-checking,
+	\item[documentation] -- types provide information on how various parts can be combined together,
+	\item[abstraction] -- types provided higher level of thinking about programs,
+	\item[specification] -- specifying type narrows possibilities how to write down programs,
+		eliminating many wrong-ones.
+\end{description}
 
 Static typing, Strong typing, \dots
 
@@ -369,8 +370,26 @@ Subtyping.
 
 \section{Apples and oranges}
 
-Problem is simple: we do not want do jumble apple and oranges,
+Problem is simple: we do not want do jumble apples and oranges,
 exactly like we were taught in elementary school.
+
+\subsection{Simple approach}
+
+Simplest way how to ``differentiate'' fruit under discussion is to define
+appropriate type synonyms.
+\begin{code}
+type Apples  = Integer
+type Oranges = Integer
+\end{code}
+These alternative names can be now used in type signatures to signalise that
+particular value represents amount of apples/oranges.
+
+Advantages of this solution include possibility to use all power we have
+to manipulate original type (\texttt{Integer} in this case). On the contrary,
+safety requirement have not been met, as compiler will have no problem with
+code like \texttt{(15 :: Apples) + (27 :: Oranges)}.
+
+\subsection{Type Classes}
 
 \subsection{Phantom types \& Empty data declarations}
 

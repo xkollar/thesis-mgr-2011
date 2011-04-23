@@ -39,3 +39,5 @@ type Monad' m = forall a b . (a -> m a,m a -> (a -> m b) -> m b)
 
 type MultiMonad' m a b = (a -> m a,m a -> (a -> m b) -> m b)
 
+type Apples  = Integer
+type Oranges = Integer
