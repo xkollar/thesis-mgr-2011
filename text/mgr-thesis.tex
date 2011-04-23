@@ -373,7 +373,7 @@ Subtyping.
 Problem is simple: we do not want do jumble apples and oranges,
 exactly like we were taught in elementary school.
 
-\subsection{Simple approach}
+\subsection{Type synonyms}
 
 Simplest way how to ``differentiate'' fruit under discussion is to define
 appropriate type synonyms.
@@ -386,10 +386,30 @@ particular value represents amount of apples/oranges.
 
 Advantages of this solution include possibility to use all power we have
 to manipulate original type (\texttt{Integer} in this case). On the contrary,
-safety requirement have not been met, as compiler will have no problem with
+safety requirement have not been met, as those type synonyms are equivalent
+during type checking. Compiler will have no problem with
 code like \texttt{(15 :: Apples) + (27 :: Oranges)}.
 
 \subsection{Type Classes}
+
+Type classes provide another possible solution. We define newtype wrapper
+for each fruit type.
+\begin{code}
+newtype Apples  = Apples  Integer
+newtype Oranges = Oranges Integer
+\end{code}
+
+Addition of two representations of same type of fruit is always semantically
+the same, so we want to call it the same name. Overloading of this kind is what
+type classes were introduced into the language.
+\begin{code}
+class Fruit a where
+    plus :: a -> a -> a
+instance Fruit Apples where
+	Apples x `plus` Apples y = Apples (x + y)
+instance Fruit Oranges where
+	Oranges x `plus` Oranges y = Oranges (x + y)
+\end{code}
 
 \subsection{Phantom types \& Empty data declarations}
 
