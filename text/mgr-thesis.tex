@@ -9,6 +9,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref}
+\usepackage[all]{hypcap}
 
 \usepackage{lmodern}
 \usepackage{amsmath,amsthm,amsfonts}
@@ -76,6 +77,7 @@ Haskell, type system, type extension
 \end{ThesisKeyWords}
 
 \tableofcontents
+\listoffigures
 
 \MainMatter
 
@@ -92,41 +94,85 @@ In this work we will understand type system (similarly as
 	\item[safety] -- meaningless or invalid code can be detected at compile time,
 	\item[optimization] -- useful information might be obtained as a by-product of static type-checking,
 	\item[documentation] -- types provide information on how various parts can be combined together,
-	\item[abstraction] -- types provided higher level of thinking about programs,
+	\item[abstraction] -- types provide higher level of thinking about programs,
 	\item[specification] -- specifying type narrows possibilities how to write down programs,
-		eliminating many wrong-ones.
+		eliminating many erroneous possibilities.
 \end{description}
 
 Static typing, Strong typing, \dots
 
 \section{Haskell type system}
 
-Before discussing extensions it would be desirable to describe
-original type system itself.
-As one can find not only in \cite{haskell2010}, Haskell uses a traditional
+% It is desirable that we give description of the original type system before
+% discussing its extensions.
+Before discussing extensions it would be desirable to give description
+of the original type system.
+As we can find not only in \cite{haskell2010}, Haskell uses a traditional
 Hindley-Milner polymorphic type system to provide a static type
 semantics enriched with type classes that provide structural way to
 introduce overloaded functions.
+
+Types and terms are two different things, types are polymorphic,
+type variables are implicitly universally quantified at the top level of type.
+Type system provides not only type checking but also type inference.
+
+Basic/Constant types
+\begin{code}
+()   :: ()
+True :: Bool
+'a'  :: Char
+1    :: Integer
+\end{code}
+
+Type Constructors
+\begin{code}
+[1,2,3]         :: [Integer]
+(True, 'a')     :: (Bool,Char)
+Just [((),"a")] :: Maybe [((),String)]
+isAlpha         :: Char -> Bool
+\end{code}
+
+
+Polymorphic types
+\begin{code}
+id    :: a -> a
+const :: a -> b -> a
+\end{code}
+
+Parametric overloading
+\begin{code}
+1    :: Num a => a
+elem :: Eq a => a -> [a] -> Bool
+sum  :: Num a => [a] -> a
+\end{code}
+
+Standard Prelude \(\kindStar\) classes and how they are structured is
+captured in figure \ref{diagram:kinds_star1}.
 
 \noindent
 \begin{figure}
 	\centering
 	\scalebox{0.9}{ \input{diagram/gen/kinds_star1} }
-	\caption{Explicit \(\kindStar\) Prelude classes}
+	\label{diagram:kinds_star1}
+	%\caption{Explicit \(\kindStar\) Prelude classes}
+	\caption{Explicit ``star'' Prelude classes}
 \end{figure}
 
 \noindent
 \begin{figure}
 	\centering
 	\scalebox{1.0}{ \input{diagram/gen/kinds_star2} }
-	\caption{Alternative view for some \(\kindStar\) classes}
+	\label{diagram:kinds_star2}
+	%\caption{{Alternative view for some \(\kindStar\) classes}}
+	\caption{Alternative view for some ``star'' classes}
 \end{figure}
 
 \noindent
 \begin{figure}
 	\centering
 	\scalebox{1.0}{ \input{diagram/gen/kinds_star_star} }
-	\caption{Some \(\emptyset \to \kindStar\) classes}
+	\label{diagram:kinds_star_star}
+	\caption{Some ``emptyset to star'' classes}
 \end{figure}
 
 \begin{example}~
@@ -352,10 +398,6 @@ This extension is implemented in \texttt{GHC} and can be enabled via
 \item \texttt{OverlappingInstances} \texttt{IncoherentInstances}
 \end{itemize}
 
-\subsection{Examples}
-
-Subtyping.
-
 \section{Generalised algebraic datatypes}
 
 \section{Extensible kinds}
@@ -399,8 +441,9 @@ newtype Apples  = Apples  Integer
 newtype Oranges = Oranges Integer
 \end{code}
 
-Addition of two representations of same type of fruit is always semantically
-the same, so we want to call it the same name. Overloading of this kind is what
+Those are fresh new types that only wait for future use.
+Addition of two representations of same type of fruit is somehow semantically
+always the same, so we want to call it the same name. Overloading of this kind is why
 type classes were introduced into the language.
 \begin{code}
 class Fruit a where
@@ -410,6 +453,14 @@ instance Fruit Apples where
 instance Fruit Oranges where
 	Oranges x `plus` Oranges y = Oranges (x + y)
 \end{code}
+
+This way is safety requirement satisfied and function
+with same meaning have same names. However, we need to write
+very similar definitions for all functions in class
+for every new type of fruit over and over. That is clearly
+point where unwanted errors can be introduced. So there is still
+space for enhancements.
+
 
 \subsection{Phantom types \& Empty data declarations}
 
@@ -447,15 +498,17 @@ plus :: Fruit a => Count a -> Count a -> Count a
 Count x `plus` Count y = Count (x + y)
 \end{code}
 
-As every elementary school child notices, from time to time one need to add apples and oranges,
-and result will not be such nonsense:
-\begin{code}
-data Fruit'
-instance Fruit Fruit'
+% As every elementary school child notices, from time to time one need to add apples and oranges,
+% and result will not be such nonsense:
+% \begin{code}
+% data Fruit'
+% instance Fruit Fruit'
+%
+% plus' :: (Fruit a, Fruit b) => Count a -> Count b -> Count Fruit'
+% Count x `plus'` Count y = Count (x + y)
+% \end{code}
 
-plus' :: Fruit a => Count a -> Count b -> Count Fruit'
-Count x `plus'` Count y = Count (x + y)
-\end{code}
+\section{Subtyping}
 
 \chapter{Unified view}
 
