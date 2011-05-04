@@ -12,8 +12,9 @@
 \usepackage[all]{hypcap}
 \usepackage{caption}
 
-\usepackage{lmodern}
 \usepackage{amsmath,amsthm,amsfonts}
+\usepackage{lmodern}
+\usepackage{mathrsfs}
 %\usepackage{ae}
 
 \usepackage{fancyvrb}
@@ -85,6 +86,11 @@ Haskell, type system, type extension
 \chapter{Introduction}
 
 \chapter{Type system}
+
+\begin{align*}
+	\mathscr{A} & \to \mathscr{BCDEFGHIJKLMNOPQRSTUVWXYZ} \\
+	\mathcal{A} & \to \mathcal{BCDEFGHIJKLMNOPQRSTUVWXYZ}
+\end{align*}
 
 % XXX: Move this to introduction?
 Talking about extensions of type system requires understanding what type system is.
@@ -181,11 +187,11 @@ Again, let us make this notion more explicit.
 
 And we somehow know, that \( \texttt{Eq}, \texttt{Num} \subseteq \kindStar \).
 Standard Prelude \(\kindStar\)-classes and subkind relation on them is
-captured in figure \ref{diagram:kinds_star1}.
+captured in figure~\ref{diagram:kinds_star1}.
 \noindent
 \begin{figure}
 	\centering
-	\scalebox{0.9}{ \input{diagram/gen/kinds_star1} }
+	\scalebox{0.9}{\input{diagram/gen/kinds_star1}}
 	\caption[Explicit ``star'' Prelude classes]{Explicit \(\kindStar\) Prelude classes}
 	\label{diagram:kinds_star1}
 \end{figure}
@@ -202,14 +208,14 @@ What is meaning of this type? Clearly, \( a \in \texttt{C1} \) and \( a \in \tex
 Giving familiar notion to this phenomenon we will write following.
 \[ \texttt{ex} :: \forall \, a \in \texttt{C1} \cap \texttt{C2} \, . \, a \]
 Fragment of emerging structure including standard Prelude classes \texttt{Eq}, \texttt{Ord}, \texttt{Show}, and \texttt{Read}
-can be found in figure \ref{diagram:kinds_star2}.
+can be found in figure~\ref{diagram:kinds_star2}.
 
 % \end{example}
 
 \noindent
 \begin{figure}
 	\centering
-	\scalebox{1.0}{ \input{diagram/gen/kinds_star2} }
+	\scalebox{1.0}{\input{diagram/gen/kinds_star2}}
 	\caption[Alternative view for some ``star'' classes]{Alternative view for some \(\kindStar\) classes}
 	\label{diagram:kinds_star2}
 \end{figure}
@@ -217,7 +223,7 @@ can be found in figure \ref{diagram:kinds_star2}.
 \noindent
 \begin{figure}
 	\centering
-	\scalebox{1.0}{ \input{diagram/gen/kinds_star_star} }
+	\scalebox{1.0}{\input{diagram/gen/kinds_star_star}}
 	\caption[Some ``emptyset to star'' classes]{Some of \(\emptyset \to \kindStar\) classes}
 	\label{diagram:kinds_star_star}
 \end{figure}
@@ -249,7 +255,7 @@ ex x y = y == y && x == return y
 
 This leads to situation, where one th
 
-Contexts, context reductions... blah blah... much better solution -- watch this:
+Contexts, context reductions\dots blah blah\dots much better solution~-- watch this:
 \begin{align*}
 	\tau   & ::= \forall \, a \in \kappa \, . \, \tau ~|~ \sigma \\
 	\sigma & ::= a ~|~ \sigma \to \sigma ~|~ \rho \, \sigma \\
@@ -368,7 +374,7 @@ newtype Empty' = E' Empty'
 \end{code}
 It looks like there actually are values besides \(\bot\), namely \(\texttt{E'}^n \, \bot\)
 for every \(n \in \mathbb{N}_0\) and \(\mu x . \texttt{E'} \, x\).
-Those are, as shown in lemma \ref{emptyTypes}, indistinguishable from \(\bot\).
+Those are, as shown in lemma~\ref{emptyTypes}, indistinguishable from \(\bot\).
 
 \begin{lemma}[Empty types]
 \label{emptyTypes}
