@@ -11,6 +11,7 @@
 \usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{caption}
+\usepackage{chemarrow}
 
 \usepackage{amsmath,amsthm,amsfonts}
 \usepackage{lmodern}
@@ -22,6 +23,10 @@
 \clubpenalty=1000
 \widowpenalty=1000
 \renewcommand{\baselinestretch}{1.08}
+
+\newcommand\uv[1]{``#1''}
+\renewcommand{\to}{\mathop{\chemarrow}}
+%\let\to\chemarrow
 
 %% Symbols used in generated graphics
 %\newcommand{\kindStar}{\star}
@@ -40,6 +45,8 @@
         }
 
 \newtheorem{lemma}{Lemma}
+
+\theoremstyle{definition}
 \newtheorem{example}{Example}
 
 %\thesistitle{Rozšírenia typového systému pre Haskell}
@@ -87,10 +94,10 @@ Haskell, type system, type extension
 
 \chapter{Type system}
 
-\begin{align*}
-	\mathscr{A} & \to \mathscr{BCDEFGHIJKLMNOPQRSTUVWXYZ} \\
-	\mathcal{A} & \to \mathcal{BCDEFGHIJKLMNOPQRSTUVWXYZ}
-\end{align*}
+% \begin{align*}
+% 	\mathscr{A} & \to \mathscr{BCDEFGHIJKLMNOPQRSTUVWXYZ} \\
+% 	\mathcal{A} & \to \mathcal{BCDEFGHIJKLMNOPQRSTUVWXYZ}
+% \end{align*}
 
 % XXX: Move this to introduction?
 Talking about extensions of type system requires understanding what type system is.
@@ -192,13 +199,13 @@ captured in figure~\ref{diagram:kinds_star1}.
 \begin{figure}
 	\centering
 	\scalebox{0.9}{\input{diagram/gen/kinds_star1}}
-	\caption[Explicit ``star'' Prelude classes]{Explicit \(\kindStar\) Prelude classes}
+	\caption[Explicit \uv{star} Prelude classes]{Explicit \(\kindStar\) Prelude classes}
 	\label{diagram:kinds_star1}
 \end{figure}
 One might have doubts about including \(\emptyset\) (with evident semantics) into diagram.
 But the notion is natural (class with no instances) and it will become useful in a moment.
 
-There are not uncommon cases where there are more than one ``restriction'' on type variable.
+There are not uncommon cases where there are more than one \uv{restriction} on type variable.
 Consider following example.
 % \begin{example}~
 \begin{code}
@@ -216,14 +223,17 @@ can be found in figure~\ref{diagram:kinds_star2}.
 \begin{figure}
 	\centering
 	\scalebox{1.0}{\input{diagram/gen/kinds_star2}}
-	\caption[Alternative view for some ``star'' classes]{Alternative view for some \(\kindStar\) classes}
+	\caption[Alternative view for some \uv{star} classes]{Alternative view for some \(\kindStar\) classes}
 	\label{diagram:kinds_star2}
 \end{figure}
 
-It is also clear, that for example class \texttt{Num} forms structure captured
-on figure \ref{diagram:num_intersection}. This way it is clear, that not
-all types with instances for \texttt{Eq} and \texttt{Show} have to have
-instance for \texttt{Num}.
+We should also notice, that for example class \texttt{Num} forms structure
+captured in figure \ref{diagram:num_intersection}. This way it is clear
+that not all types with instances for \texttt{Eq} and \texttt{Show}
+have to have instance for \texttt{Num}.
+
+Usage of \(\cap\) operator is also one of reasons to include \(\emptyset\)
+class.
 
 \noindent
 \begin{figure}
@@ -237,12 +247,14 @@ instance for \texttt{Num}.
 \begin{figure}
 	\centering
 	\scalebox{1.0}{\input{diagram/gen/kinds_star_star}}
-	\caption[Some ``emptyset to star'' classes]{Some of \(\emptyset \to \kindStar\) classes}
+	\caption[Some \uv{emptyset to star} classes]{Some of \(\emptyset \to \kindStar\) classes}
 	\label{diagram:kinds_star_star}
 \end{figure}
 
-\begin{example}
-This one is ugly and points out some problems.
+Following example is somehow \uv{problematic}. However, as we will see
+later, this is not big deal.
+
+%\begin{example}~
 \begin{code}
 ex :: (Eq (m a), Monad m) => m a -> a -> Bool
 ex x y = x == return y
@@ -254,21 +266,27 @@ but this would require to make possible quantification not only over variables b
 Alternatively, taking \(\{\_\}\) as a meta-operator mapping type to singleton kind,
 it is possible to express desired type by
 \[ \texttt{ex} :: \forall a \in \kindStar \, . \, \forall m \in \texttt{Monad} \cap \{ a \} \to \texttt{Eq} \, . \, m \, a \to a \to \texttt{Bool} \]
-Both mentioned possibilities embodies some ``dependency'', that gives significance to order of quantifications.
+Both mentioned possibilities embodies some \uv{dependency}, that gives significance to order of quantifications.
 We will show how to deal with this later. % XXX : later... multiparam type classes.
-\end{example}
+%\end{example}
 
-\begin{example}~
-\begin{code}
-ex :: (Monad m, Eq (m a), Eq a) => m a -> a -> Bool
-ex x y = y == y && x == return y
-\end{code}
-\[ \texttt{ex} :: \forall m \in \texttt{Monad} \cap (\texttt{Eq} \to \texttt{Eq}) \, . \, \forall a \in \texttt{Eq} \, . \, m a \to a \to \texttt{Bool} \]
-\end{example}
+% \begin{example}~
+% \begin{code}
+% ex :: (Monad m, Eq (m a), Eq a) => m a -> a -> Bool
+% ex x y = y == y && x == return y
+% \end{code}
+% \[ \texttt{ex} :: \forall m \in \texttt{Monad} \cap (\texttt{Eq} \to \texttt{Eq}) \, . \, \forall a \in \texttt{Eq} \, . \, m a \to a \to \texttt{Bool} \]
+% \end{example}
 
 This leads to situation, where one th
 
-Contexts, context reductions\dots blah blah\dots much better solution~-- watch this:
+\section{Mental framework}
+
+In previous section has been pointed out some properties of
+Haskell type system that one should take into account when
+thinking about it. Following abstract syntax covers what
+have been told.
+
 \begin{align*}
 	\tau   & ::= \forall \, a \in \kappa \, . \, \tau ~|~ \sigma \\
 	\sigma & ::= a ~|~ \sigma \to \sigma ~|~ \rho \, \sigma \\
@@ -280,6 +298,7 @@ where
 	\item \(a\) stands for type variable,
 	\item \(c\) stands for kind constant,
 	\item \(\tau\) represents types,
+	\item \(\sigma\) in only technical detail concerning properties of \(\to\),
 	\item and \(\kappa\) represents kinds.
 \end{itemize}
 
@@ -305,7 +324,7 @@ This was expected to generate like 15 pages in thesis \verb~:-/~.
 \section{Removing type-class infrastructure}
 
 As noticed by many and underlined by actual implementation, type-classes can be removed
-from the language with only little ``harm''.
+from the language with only little \uv{harm}.
 
 Let us have a look at how it can be done. Take the following well known example.
 \begin{code}
@@ -400,7 +419,7 @@ Simple induction provides us all \(\texttt{E'}^n \, \bot\) cases
 and least fixed point case is obvious as well, as \(\bot\) is least element.
 \end{proof}
 
-This ``extension'' is in fact very natural. Definition of \texttt{Empty'}
+This \uv{extension} is in fact very natural. Definition of \texttt{Empty'}
 might give user feeling that it is non-empty, whereas emptiness is
 obvious in case of \texttt{Empty}.
 
@@ -466,7 +485,7 @@ exactly like we were taught in elementary school.
 
 \subsection{Type synonyms}
 
-Simplest way how to ``differentiate'' fruit under discussion is to define
+Simplest way how to \uv{differentiate} fruit under discussion is to define
 appropriate type synonyms.
 \begin{code}
 type Apples  = Integer
