@@ -25,7 +25,7 @@
 \renewcommand{\baselinestretch}{1.08}
 
 \newcommand\uv[1]{``#1''}
-\renewcommand{\to}{\mathop{\chemarrow}}
+\renewcommand{\to}{\mathrel{\mathop{\chemarrow}}}
 %\let\to\chemarrow
 
 %% Symbols used in generated graphics
@@ -243,6 +243,15 @@ class.
 	\label{diagram:num_intersection}
 \end{figure}
 
+Another interesting example is pictured on figure
+\ref{diagram:kinds_star_star} (please notice that symbol \(\to\)
+is overloaded here, representing either type constructor and kind
+constructor). It's another place where \(\emptyset\) comes in
+handy, as (without any surprise) \(\to\) class constructor
+is contravariant in first argument. Arrow between \texttt{Functor}
+and \texttt{Monad} is drawn dashed, as there is no such
+statement in Prelude, but we all know it's true.
+
 \noindent
 \begin{figure}
 	\centering
@@ -321,7 +330,7 @@ example in \cite{typeclassopedia}.
 %      with 15 pages of text ;-).
 This was expected to generate like 15 pages in thesis \verb~:-/~.
 
-\section{Removing type-class infrastructure}
+\section{System without type-class infrastructure}
 
 As noticed by many and underlined by actual implementation, type-classes can be removed
 from the language with only little \uv{harm}.
