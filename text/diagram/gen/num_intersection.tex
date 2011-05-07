@@ -1,0 +1,42 @@
+
+\begin{tikzpicture}[>=latex,line join=bevel,]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Edge: \texttt{Eq} -> \texttt{Eq} \cap \texttt{Show}
+  \draw [->] (21.206bp,118.43bp) .. controls (24.717bp,110.63bp) and (29.45bp,100.11bp)  .. (37.81bp,81.533bp);
+  % Edge: \texttt{Eq} \cap \texttt{Show} -> \texttt{Num}
+  \draw [->] (43bp,58.343bp) .. controls (43bp,50.799bp) and (43bp,40.76bp)  .. (43bp,21.837bp);
+  % Edge: \texttt{Show} -> \texttt{Eq} \cap \texttt{Show}
+  \draw [->] (65.994bp,119.27bp) .. controls (62.352bp,111.47bp) and (57.301bp,100.64bp)  .. (48.538bp,81.868bp);
+  % Node: \texttt{Show}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (92bp,141bp) -- (50bp,141bp) -- (50bp,120bp) -- (92bp,120bp) -- cycle;
+  \draw (71bp,130bp) node {$\texttt{Show}$};
+\end{scope}
+  % Node: \texttt{Num}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (62bp,22bp) -- (24bp,22bp) -- (24bp,1bp) -- (62bp,1bp) -- cycle;
+  \draw (43bp,11bp) node {$\texttt{Num}$};
+\end{scope}
+  % Node: \texttt{Eq}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (32bp,142bp) -- (0bp,142bp) -- (0bp,119bp) -- (32bp,119bp) -- cycle;
+  \draw (16bp,130bp) node {$\texttt{Eq}$};
+\end{scope}
+  % Node: \texttt{Eq} \cap \texttt{Show}
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (75bp,82bp) -- (11bp,82bp) -- (11bp,59bp) -- (75bp,59bp) -- cycle;
+  \draw (43bp,70bp) node {$\texttt{Eq} \cap \texttt{Show}$};
+\end{scope}
+%
+\end{tikzpicture}
+
