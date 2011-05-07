@@ -1,5 +1,7 @@
 digraph kinds {
+	graph [ranksep=0.25];
 	node [shape=box];
+
 	"\texttt{Eq}" -> "\texttt{Eq} \cap \texttt{Show}";
 	"\texttt{Show}" -> "\texttt{Eq} \cap \texttt{Show}";
 	"\texttt{Eq} \cap \texttt{Show}" -> "\texttt{Num}";
