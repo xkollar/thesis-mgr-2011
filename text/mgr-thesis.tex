@@ -465,6 +465,53 @@ They are obviously distinguishable as first one is factorial function but second
 This extension is implemented in \texttt{GHC} and can be enabled via
 \texttt{LANGUAGE} pragma \texttt{MultiParamTypeClasses}.
 
+With extension classes are no more simple subsets but relations~-- subsets of Cartesian products.
+This requires us to enrich a bit our mental framework.
+
+\begin{align*}
+	a^n      & ::= \overbrace{(a,\dots,a)}^n \\
+	\tau     & ::= \forall \, a^n \in \kappa^n \, . \, \tau ~|~ \sigma \\
+	\kappa^n & ::= \overbrace{(\kappa,\dots,\kappa)}^n \\
+	\kappa   & ::= c ~|~ \kindStar ~|~ \kappa \to \kappa ~|~ \kappa \cap \kappa \\
+\end{align*}
+
+Here
+\begin{itemize}
+	\item \(a^n\) represents \(n\)-tuples of variables,
+	\item \(kappa^n\) represents \(n\)-parametric type class (special case for \(n = 1\) is what we had before).
+\end{itemize}
+
+% Traditional \texttt{Monad}.
+% \begin{code}
+% class Functor m => Monad m where
+%     return :: a -> m a
+%     (>>=) :: m a -> (a -> m b) -> m b
+% \end{code}
+%
+% Multi-parametric \texttt{Monad}.
+% \begin{code}
+% class Functor m a b => Monad m a b where
+%     return :: a -> m a
+%     (>>=) :: m a -> (a -> m b) -> m b
+% \end{code}
+
+Among others, very nice reason to try to expand the language this way is for example
+class for containers~-- \texttt{Container}. Traditionally, it would look like this.
+\begin{code}
+class Container c where
+    empty  :: c a
+    insert :: a -> c a -> c a
+\end{code}
+but as we have seen sooner (when\dots removing TC infrastructure?) this forces
+us to have \texttt{a}-variable quantified universally.
+
+And \texttt{Container} as multi-parametric class.
+\begin{code}
+class Container c a where
+    empty  :: c a
+    insert :: a -> c a -> c a
+\end{code}
+
 \subsection{Functional dependencies}
 
 \subsection{Relaxed rules for instances}
