@@ -478,7 +478,7 @@ This requires us to enrich a bit our mental framework.
 Here
 \begin{itemize}
 	\item \(a^n\) represents \(n\)-tuples of variables,
-	\item \(kappa^n\) represents \(n\)-parametric type class (special case for \(n = 1\) is what we had before).
+	\item \(\kappa^n\) represents \(n\)-parametric type class (special case for \(n = 1\) is what we had before).
 \end{itemize}
 
 % Traditional \texttt{Monad}.
@@ -496,20 +496,35 @@ Here
 % \end{code}
 
 Among others, very nice reason to try to expand the language this way is for example
-class for containers~-- \texttt{Container}. Traditionally, it would look like this.
+class for containers. Traditionally, it would look like this.
 \begin{code}
-class Container c where
+class ContainerT c where
     empty  :: c a
     insert :: a -> c a -> c a
 \end{code}
 but as we have seen sooner (when\dots removing TC infrastructure?) this forces
 us to have \texttt{a}-variable quantified universally.
 
-And \texttt{Container} as multi-parametric class.
+And its multi-parametric version.
 \begin{code}
-class Container c a where
+class ContainerM c a where
     empty  :: c a
     insert :: a -> c a -> c a
+\end{code}
+
+One would expect instances for lists and sets (among others).  However,
+Haskell set implementation allows creating sets only of types that belongs
+to \texttt{Ord}, so instance for \texttt{Set} of \texttt{ContainerT}
+is not be possible.
+Class \texttt{ContainerT} is somewhere under \(\kindStar \to \kindStar\),
+but type constructor \texttt{Set} is not even there (it can be found
+under \(\texttt{Ord} \to \kindStar\), again contravariance of \(\to\)).
+
+Instance for \texttt{ContainerM} is more or less trivial.
+\begin{code}
+instance Ord a => ContainerM Set a where
+	empty  = Set.empty
+	insert = Set.insert
 \end{code}
 
 \subsection{Functional dependencies}
