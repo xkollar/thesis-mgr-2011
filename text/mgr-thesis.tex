@@ -523,8 +523,8 @@ under \(\texttt{Ord} \to \kindStar\), again contravariance of \(\to\)).
 Instance for \texttt{ContainerM} is more or less trivial.
 \begin{code}
 instance Ord a => ContainerM Set a where
-	empty  = Set.empty
-	insert = Set.insert
+    empty  = Set.empty
+    insert = Set.insert
 \end{code}
 
 \subsection{Functional dependencies}
@@ -669,6 +669,8 @@ Someone might think that this work leads to conclusion that Haskell is somehow n
 That is not true. Big picture. Only good language pushes one to extend it... using features
 to its limits, to see what can be done, stimulates thinking about things.
 
+\clearpage
+\addcontentsline{toc}{chapter}{\bibname}
 %\bibliographystyle{apalike}
 \bibliographystyle{plain}
 \bibliography{bibliography}
