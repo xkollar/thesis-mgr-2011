@@ -183,8 +183,8 @@ Somewhere between concrete and polymorphic lies values with polymorphic overload
 elem :: Eq a => a -> [a] -> Bool
 sum  :: Num a => [a] -> a
 \end{code}
-What does this types mean? There clearly is some sort of quantification, but not over all
-possible \(\kindStar\) types. Those classes are therefore somehow subkinds of \(\kindStar\).
+What do these types mean? There is clearly some sort of quantification, but not over all
+possible \(\kindStar\) types. Those classes can therefore be taken as subkinds of \(\kindStar\).
 Again, let us make this notion more explicit.
 
 %\begin{example}~
@@ -303,17 +303,16 @@ thinking about it. Following abstract syntax covers what
 have been told.
 
 \begin{align*}
-	\tau   & ::= \forall \, a \in \kappa \, . \, \tau ~|~ \sigma \\
-	\sigma & ::= a ~|~ \sigma \to \sigma ~|~ \rho \, \sigma \\
-	\rho   & ::= a ~|~ \rho \, \sigma \\
-	\kappa & ::= c ~|~ \kindStar ~|~ \kappa \to \kappa ~|~ \kappa \cap \kappa \\
+	\tau   & ::= \forall \, a {:} \kappa \, . \, \tau ~|~ \sigma \\
+	\sigma & ::= a ~|~ c ~|~ \sigma \to \sigma ~|~ \sigma \, \sigma \\
+	\kappa & ::= K ~|~ \kindStar ~|~ \kappa \to \kappa ~|~ \kappa \cap \kappa \\
 \end{align*}
 where
 \begin{itemize}
 	\item \(a\) stands for type variable,
-	\item \(c\) stands for kind constant,
+	\item \(c\) stands for type constant,
 	\item \(\tau\) represents types,
-	\item \(\sigma\) in only technical detail concerning properties of \(\to\),
+	\item \(K\) stands for kind constant,
 	\item and \(\kappa\) represents kinds.
 \end{itemize}
 
@@ -470,15 +469,17 @@ This requires us to enrich a bit our mental framework.
 
 \begin{align*}
 	a^n      & ::= \overbrace{(a,\dots,a)}^n \\
-	\tau     & ::= \forall \, a^n \in \kappa^n \, . \, \tau ~|~ \sigma \\
-	\kappa^n & ::= \overbrace{(\kappa,\dots,\kappa)}^n \\
-	\kappa   & ::= c ~|~ \kindStar ~|~ \kappa \to \kappa ~|~ \kappa \cap \kappa \\
+	\tau     & ::= \forall \, a^n {:} \kappa^n \, . \, \tau ~|~ \sigma \\
+	\sigma   & ::= a ~|~ c ~|~ \sigma \to \sigma ~|~ \sigma \, \sigma \\
+	\kappa^n & ::= K_n ~|~ \overbrace{\kappa \times \dots \times \kappa}^n \\
+	\kappa   & ::= K ~|~ \kindStar ~|~ \kappa \to \kappa ~|~ \kappa \cap \kappa \\
 \end{align*}
 
 Here
 \begin{itemize}
 	\item \(a^n\) represents \(n\)-tuples of variables,
-	\item \(\kappa^n\) represents \(n\)-parametric type class (special case for \(n = 1\) is what we had before).
+	\item \(\kappa^n\) represents a \(n\)-parametric type class (special case for \(n = 1\) is what we had before),
+	\item \(K_n\) represents constant \(n\)-parametric type class.
 \end{itemize}
 
 % Traditional \texttt{Monad}.
@@ -502,7 +503,7 @@ class ContainerT c where
     empty  :: c a
     insert :: a -> c a -> c a
 \end{code}
-but as we have seen sooner (when\dots removing TC infrastructure?) this forces
+but as we have seen earlier (when\dots removing TC infrastructure?) this forces
 us to have \texttt{a}-variable quantified universally.
 
 And its multi-parametric version.
@@ -654,6 +655,38 @@ Count x `plus` Count y = Count (x + y)
 % \end{code}
 
 \section{Subtyping}
+
+\subsection{Multi-parameter type classes}
+
+\begin{code}
+class Subtype a b where
+    coer :: a -> b
+\end{code}
+
+\begin{code}
+instance Subtype Int Float where
+    coer = fromIntegral
+\end{code}
+
+\begin{code}
+instance Subtype a b => Subtype (Maybe a) (Maybe b) where
+    coer = maybe Nothing (Just . coer)
+\end{code}
+
+\begin{code}
+instance (Subtype c a,Subtype b d) => Subtype (a->b) (c->d) where
+   coer f = coer . f . coer
+\end{code}
+
+\begin{code}
+instance Subtype a a where
+    coer = id
+\end{code}
+
+\begin{code}
+instance (Subtype a b,Subtype b c) => Subtype a c where
+    coer = coer . coer
+\end{code}
 
 \chapter{Unified view}
 
