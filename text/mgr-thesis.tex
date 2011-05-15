@@ -657,39 +657,136 @@ Count x `plus` Count y = Count (x + y)
 
 \section{Subtyping}
 
+Subtype polymorphism (for more detail see \cite{pierce:2002:types})
+is undoubtedly interesting feature. In math it comes natural to use
+natural number where some rational or real (or even complex) is expected.
+%
+One might want to have the ease of use in language
+he or she is fond of.
+
+On the other hand, one should not forget, that being
+able to do this \uv{on paper} is not without a charge.
+Remember those algebra classes showing how to \uv{cook}
+various types of numbers. One of steps while building
+new in example rationals from integers was
+coercion function that did the \uv{conversion}.
+
+Without subtyping one would need to use explicit
+coercion functions like \texttt{fromIntegral} or
+similar, or even use combination of more than one.
+
+We would however like to move some responsibility
+from our shoulders to type system.
+
 \subsection{Multi-parameter type classes}
+
+Key role in subtyping have so called subtyping relation
+on types (type \(T\) is subtype of \(S\)).
+And as Multi-parameter type classes are relations on types as well,
+we can try to use them. Let us have class \texttt{Subtype} providing
+\texttt{coer}~-- coercion function.
 
 \begin{code}
 class Subtype a b where
     coer :: a -> b
 \end{code}
 
+We can create instance for
+
 \begin{code}
 instance Subtype Int Float where
     coer = fromIntegral
 \end{code}
+
+Journey of subtyping does not end this simple. What we did now
+is we gave common name for coercions. But we still need to
+think about them, and when should we combine them.
+In fact, this might get even harder, as it's not
+obvious, where we got by coercion. Therefore we need
+some generalisations. For instance for covariant type
+constructors, we might construct instances like the
+one for \texttt{Maybe}
 
 \begin{code}
 instance Subtype a b => Subtype (Maybe a) (Maybe b) where
     coer = maybe Nothing (Just . coer)
 \end{code}
 
+Even contravariance can be handled nicely. Instance for functions
+even shows that subtyping relation can be defined on both parameters
+of \texttt{->} at once.
 \begin{code}
-instance (Subtype c a,Subtype b d) => Subtype (a->b) (c->d) where
-   coer f = coer . f . coer
+instance (Subtype c a,Subtype b d)
+    => Subtype (a -> b) (c -> d) where
+        coer f = coer . f . coer
 \end{code}
 
+We shall not forget about trivial instance. It will be unnecessary
+to erase coercions only because of slight change of type.
 \begin{code}
 instance Subtype a a where
     coer = id
 \end{code}
 
+Of course. Subtyping relation is expected to be transitive.
+And available syntax provides us with way to express this.
 \begin{code}
 instance (Subtype a b,Subtype b c) => Subtype a c where
     coer = coer . coer
 \end{code}
 
-\chapter{Unified view}
+And one can dive into more exciting stuff as well. For example,
+as \texttt{Maybe} is endofunctor it is more than natural to make following instance.
+(This one is less general as it can be.)
+\begin{code}
+instance Subtype a (Maybe a) where
+    coer = Just
+\end{code}
+
+Another one reveals relation between \texttt{Maybe} and \texttt{[]}.
+\begin{code}
+instance Subtype (Maybe a) [a] where
+    coer = maybe [] (:[])
+\end{code}
+And by transitivity we have also endofunctor-like coercion for lists as well.
+
+\begin{code}
+instance Subtype a (b -> a) where
+    coer = const
+\end{code}
+
+%\begin{code}
+%instance Subtype a () where
+%    coer = const ()
+%\end{code}
+
+Anyone who have ever met with systems with subtyping will notice
+similarities between instances (especially trivial, transitivity and functions).
+For those who are not familiar with those, just have a look.
+
+\[
+\inferrule[Id]
+	{}
+	{\iota : A \hookrightarrow A}
+\qquad
+\inferrule[Trans]
+	{\kappa_1 : A \hookrightarrow B, \kappa_2 : B \hookrightarrow C}
+	{\kappa_2 \circ \kappa_1 : A \hookrightarrow C}
+\]
+\[
+\inferrule[Arr]
+	{\kappa_1 : C \hookrightarrow A, \kappa_2 : B \hookrightarrow D}
+	{\lambda f . \kappa_2 \circ f \circ \kappa_1 : (A \to B) \hookrightarrow (C \to D)}
+\]
+
+It would not be right to make impression that this Haskell code
+would actually work. Main troubles are caused by overlapping instances,
+identity rule and transitivity. It is also circular structure in subtyping
+can be problem.
+
+\subsection{Type families}
+
+% \chapter{Unified view}
 
 % \chapter{Own extension proposal}
 
@@ -700,7 +797,7 @@ I came to conclusion that violet cows are present mainly in ads.
 
 Oh, and of course:
 Someone might think that this work leads to conclusion that Haskell is somehow not good.
-That is not true. Big picture. Only good language pushes one to extend it... using features
+That is not true. Big picture. Only good language pushes one to extend it\dots using features
 to its limits, to see what can be done, stimulates thinking about things.
 
 \clearpage
