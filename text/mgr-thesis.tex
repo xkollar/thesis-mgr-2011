@@ -386,13 +386,23 @@ Most straightforward way how to express it would be
 \begin{code}
 type Monad m a b = (a -> m a, m a -> (a -> m b) -> m b)
 \end{code}
-But what have we done? This is not traditional \texttt{Monad} but
-multi-parameter. This is another example for multi-parameter type classes
-being natural. But how to do it intended way?
+But what have we done? This is not traditional \texttt{Monad}
+but multi-parameter (deeper discussed on page
+\pageref{extension:multiparam}). This is another example for
+multi-parameter type classes being natural. But how to express the
+traditional \texttt{Monad}?
 \begin{code}
 type Monad m = forall a b . (a -> m a, m a -> (a -> m b) -> m b)
 \end{code}
+But this introduces rank-n or at least rank-2 types (page
+\pageref{extension:rankn}).
 
+Naturally arising question is, why would anyone want to do this?
+Well, we got rid of all problems that arise with type classes:
+monomorphism restriction, overlapping instances and so on.
+However, we need to explicitly write what instance should be used.
+Also we lost this possibility
+to exploit it as way to perform compile-time computation.
 
 \chapter{Extensions}
 
@@ -462,6 +472,7 @@ They are obviously distinguishable as first one is factorial function but second
 \end{proof}
 
 \section{Multi-parameter type classes}
+\label{extension:multiparam}
 
 This extension is implemented in \texttt{GHC} and can be enabled via
 \texttt{LANGUAGE} pragma \texttt{MultiParamTypeClasses}.
@@ -550,9 +561,10 @@ instance Ord a => ContainerM Set a where
 
 \section{Extensible kinds}
 
-\section{Rank-2 types}
+\section{Rank-n types}
+\label{extension:rankn}
 
-\subsection{Rank-n types}
+\subsection{Rank-2 types}
 
 % \section{Subtyping} % as example
 
@@ -627,6 +639,7 @@ by narrowing it down to more specific one we get a function that allows us
 adding up oranges with oranges, apples with apples, but forbids any other combinations
 of apples and oranges. Advantage of this solution is that it is polymorphic
 and we do not need to separately write code for apples and oranges.
+We obeyed abstraction principle very much here.
 
 On the contrary, this can be also seen as drawback, as one can create value
 of type \texttt{Count Bool} which we have not intended. However,
@@ -790,9 +803,9 @@ get rid of need to thing about construction of coercions and we gave
 it common name. However, we still need to write it down. One feature
 that can make this more smooth is to replace \texttt{\$} operator.
 \begin{code}
-{-# LANGUAGE MultiParamTypeClasses #-}
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE IncoherentInstances #-}
+\{-# LANGUAGE MultiParamTypeClasses #-\}
+\{-# LANGUAGE FlexibleInstances #-\}
+\{-# LANGUAGE IncoherentInstances #-\}
 
 import Prelude hiding ( ($) )
 
@@ -807,7 +820,10 @@ And original code could work as well for trivial instance.
 (Again notice that we are playing dangerous game here as it uses
 flexible instances and incoherent instances.)
 
-\subsection{Type families}
+% \subsection{Type families and multi-parameter type classes}
+%
+% As opposed to solution with multi-parameter type classes, we will
+% now show, how to be able to \uv{add up} different types of numbers
 
 % \chapter{Unified view}
 
