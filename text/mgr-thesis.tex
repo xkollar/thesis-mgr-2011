@@ -20,6 +20,7 @@
 \usepackage{fancyvrb}
 \usepackage{enumerate}
 \usepackage{mathpartir}
+\usepackage{comment}
 
 \clubpenalty=1000
 \widowpenalty=1000
@@ -774,7 +775,7 @@ For those who are not familiar with those, just have a look.
 	{\kappa_2 \circ \kappa_1 : A \hookrightarrow C}
 \]
 \[
-\inferrule[Arr]
+\inferrule[Arrow]
 	{\kappa_1 : C \hookrightarrow A, \kappa_2 : B \hookrightarrow D}
 	{\lambda f . \kappa_2 \circ f \circ \kappa_1 : (A \to B) \hookrightarrow (C \to D)}
 \]
@@ -783,6 +784,28 @@ It would not be right to make impression that this Haskell code
 would actually work. Main troubles are caused by overlapping instances,
 identity rule and transitivity. It is also circular structure in subtyping
 can be problem.
+
+Using multi-parameter type classes we shown how it might be possible to
+get rid of need to thing about construction of coercions and we gave
+it common name. However, we still need to write it down. One feature
+that can make this more smooth is to replace \texttt{\$} operator.
+\begin{code}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE IncoherentInstances #-}
+
+import Prelude hiding ( ($) )
+
+($) :: Subtype a b => (b -> c) -> a -> c
+($) = coer
+\end{code}
+\begin{comment}
+$
+\end{comment}
+% Comment is hack for syntax highlighting...
+And original code could work as well for trivial instance.
+(Again notice that we are playing dangerous game here as it uses
+flexible instances and incoherent instances.)
 
 \subsection{Type families}
 
