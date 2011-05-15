@@ -167,7 +167,7 @@ const :: a -> b -> a
 What do these types mean? Type of identity function tells us, that
 it can take as argument value of any type and it returns value of the
 same type. Well, not exactly any type. We are interested in inhabited
-types only. But we know category that consists only of these types~--
+types only. But we know \uv{category} that consists only of these types~--
 kind \(\kindStar\). Let us write that in explicit way.
 
 %\begin{example}~
@@ -542,6 +542,10 @@ instance Ord a => ContainerM Set a where
 \end{code}
 
 \subsection{Functional dependencies}
+
+Similarly as in relational databases \emph{functional dependencies} refers to
+restriction of selected relations (in this case multi-parameter type classes) in the
+way that they are functions. (Or at least some of their parameters.)
 
 \subsection{Relaxed rules for instances}
 
