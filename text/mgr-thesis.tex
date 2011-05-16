@@ -1,6 +1,6 @@
 % vim: spell
-\documentclass[11pt,oneside,final]{fithesis2}
-%\documentclass[11pt,oneside,draft]{fithesis2}
+%\documentclass[11pt,oneside,final]{fithesis2}
+\documentclass[11pt,oneside,draft]{fithesis2}
 
 %\usepackage[draft]{pgf}
 \usepackage{tikz}
@@ -22,8 +22,9 @@
 \usepackage{comment}
 
 %\usepackage[nottoc]{tocbibind}
-\usepackage{tocbibind}
+%\usepackage{tocbibind}
 
+%\usepackage[plainpages=false,pdfpagelabels,unicode,colorlinks]{hyperref}
 \usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref}
 \usepackage[all]{hypcap}
 
@@ -96,9 +97,14 @@ The aim of the master's thesis/work is to provide...
 Haskell, type system, type extension
 \end{ThesisKeyWords}
 
-% \clearpage
-% \addcontentsline{toc}{chapter}{Contents}
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{\contentsname}
 \tableofcontents
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
 \listoffigures
 
 \MainMatter
@@ -783,9 +789,10 @@ instance Subtype a (b -> a) where
 %    coer = const ()
 %\end{code}
 
-Anyone who have ever met with systems with subtyping will notice
-similarities between instances (especially trivial, transitivity and functions).
-For those who are not familiar with those, just have a look.
+Anyone who have ever met with systems with subtyping (i.e.
+\cite{pierce:2002:types}, \cite{luo:99:coercive}) will notice similarities
+between instances (especially trivial, transitivity and functions).
+Following example is for those who are not familiar with those.
 
 \[
 \inferrule[Id]
@@ -850,8 +857,9 @@ to its limits, to see what can be done, stimulates thinking about things.
 
 \cite{GADT+Kind=Dep}
 
-% \clearpage
-% \addcontentsline{toc}{chapter}{\bibname}
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{\bibname}
 %\bibliographystyle{apalike}
 \bibliographystyle{plain}
 \bibliography{bibliography}
