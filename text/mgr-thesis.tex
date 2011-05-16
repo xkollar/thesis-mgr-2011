@@ -25,7 +25,7 @@
 %\usepackage{tocbibind}
 
 %\usepackage[plainpages=false,pdfpagelabels,unicode,colorlinks]{hyperref}
-\usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref}
+\usepackage[plainpages=false,pdfpagelabels,unicode,bookmarks=false,pdfborder={0 0 1}]{hyperref}
 \usepackage[all]{hypcap}
 
 \clubpenalty=1000
@@ -251,8 +251,7 @@ captured in figure \ref{diagram:num_intersection}. This way it is clear
 that not all types with instances for \texttt{Eq} and \texttt{Show}
 have to have instance for \texttt{Num} (as figure \ref{diagram:kinds_star1} may suggest).
 
-Usage of \(\cap\) operator is also one of reasons to include \(\emptyset\)
-class.
+Usage of \(\cap\) is also one of reasons to include \(\emptyset\) class.
 
 \noindent
 \begin{figure}
@@ -339,7 +338,7 @@ Analogously \texttt{data} creates and fills types.
 
 % XXX: Is it really sort that matters?
 Intersection have sense (understand possibility of not-emptiness) only on
-kinds with same sort(?) (\(\texttt{Eq} \cap \texttt{Functor}\) even feels wrong).
+kinds with same structure (\(\texttt{Eq} \cap \texttt{Functor}\) even feels wrong).
 
 Inclusion diagrams accompanying some distinguished type classes can be found for
 example in \cite{typeclassopedia}.
@@ -571,6 +570,8 @@ way that they are functions. (Or at least some of their parameters.)
 \item \texttt{UndecidableInstances}
 \item \texttt{OverlappingInstances} \texttt{IncoherentInstances}
 \end{itemize}
+
+\section{Type families}
 
 \section{Generalised algebraic datatypes}
 
@@ -817,7 +818,7 @@ can be problem.
 Using multi-parameter type classes we shown how it might be possible to
 get rid of need to thing about construction of coercions and we gave
 it common name. However, we still need to write it down. One feature
-that can make this more smooth is to replace \texttt{\$} operator.
+that can make this smoother is to replace \texttt{\$} operator.
 \begin{code}
 \{-# LANGUAGE MultiParamTypeClasses #-\}
 \{-# LANGUAGE FlexibleInstances #-\}
@@ -832,16 +833,44 @@ import Prelude hiding ( ($) )
 $
 \end{comment}
 % Comment is hack for syntax highlighting...
-And original code could work as well for trivial instance.
+And original code could work as well because of trivial instance.
 (Again notice that we are playing dangerous game here as it uses
 flexible instances and incoherent instances.)
 
-\subsection{Type families and multi-parameter type classes}
+\subsection{Type functions \& Multi-parameter type classes}
 
-As opposed to solution with multi-parameter type classes, we will
+As opposed to solution without type functions, we will
 now show, how to be able to \uv{add up} different types of numbers
+without need for a explicitly written coercions. Used approach is
+exactly the same as used by \cite{spjones:2009:funTypesFun}.
 
-\cite{spjones:2009:funTypesFun}
+Type functions (typically part of type families) can be used here
+to tell, which type will be result.
+\begin{code}
+class GNum a b where
+    -- TypePlus :: * -> * -> *
+    TypePlus a b :: *
+    (+) :: a -> b -> TypePlus a b
+\end{code}
+Class \texttt{GNum} (generalised \texttt{Num}) provides\dots
+
+\begin{code}
+instance GNum Float Float where
+    TypePlus Float Float = Float
+    (+) = primPlusFloat
+
+instance GNum Float Int where
+    TypePlus Float Int = Float
+    x + y = x + fromIntegral y
+
+instance GNum Int Float where
+    TypePlus Int Float = Float
+    x + y = fromIntegral x + y
+
+instance GNum Int Int where
+    TypePlus Int Int = Int
+    (+) = primPlusInt
+\end{code}
 
 % \chapter{Unified view}
 
