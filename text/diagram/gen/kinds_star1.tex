@@ -8,16 +8,16 @@
   % Edge: \texttt{Show} -> \texttt{Num}
   \draw [->] (207bp,205.23bp) .. controls (207bp,202.29bp) and (207bp,199bp)  .. (207bp,185.56bp);
   % Edge: \kindStar -> \texttt{Read}
+  \pgfsetcolor{gray}
   \draw [->] (138.79bp,252.83bp) .. controls (120.95bp,248.45bp) and (88.037bp,240.01bp)  .. (42.198bp,224.81bp);
   % Edge: \kindStar -> \texttt{Enum}
   \draw [->] (165.04bp,252.16bp) .. controls (186.09bp,245.97bp) and (228.14bp,233.61bp)  .. (266.82bp,222.23bp);
   % Edge: \texttt{Ix} -> \emptyset
-  \pgfsetcolor{gray}
   \draw [->,dotted] (102.47bp,124.08bp) .. controls (101.48bp,103.92bp) and (99.364bp,60.469bp)  .. (97.575bp,23.787bp);
   % Edge: \kindStar -> \texttt{Show}
-  \pgfsetcolor{black}
   \draw [->] (165.03bp,246.52bp) .. controls (170.71bp,242.39bp) and (177.54bp,237.42bp)  .. (192.51bp,226.54bp);
   % Edge: \texttt{Floating} -> \texttt{RealFloat}
+  \pgfsetcolor{black}
   \draw [->] (157.85bp,82.361bp) .. controls (158.05bp,79.7bp) and (158.26bp,76.793bp)  .. (159.22bp,63.685bp);
   % Edge: \texttt{RealFloat} -> \emptyset
   \pgfsetcolor{gray}
@@ -28,8 +28,10 @@
   % Edge: \texttt{Num} -> \texttt{Fractional}
   \draw [->] (198.33bp,164.49bp) .. controls (195.55bp,161.12bp) and (192.38bp,157.28bp)  .. (182.73bp,145.58bp);
   % Edge: \kindStar -> \texttt{Eq}
+  \pgfsetcolor{gray}
   \draw [->] (152bp,246.32bp) .. controls (152bp,243.67bp) and (152bp,240.7bp)  .. (152bp,227.59bp);
   % Edge: \texttt{Real} -> \texttt{Integral}
+  \pgfsetcolor{black}
   \draw [->] (268.28bp,124.44bp) .. controls (275.57bp,120.24bp) and (284.13bp,115.29bp)  .. (301.03bp,105.53bp);
   % Edge: \texttt{Read} -> \emptyset
   \pgfsetcolor{gray}
@@ -60,6 +62,7 @@
   \pgfsetcolor{black}
   \draw [->] (218.66bp,83.441bp) .. controls (209.72bp,78.803bp) and (199.05bp,73.268bp)  .. (180.28bp,63.523bp);
   % Edge: \kindStar -> \texttt{Bounded}
+  \pgfsetcolor{gray}
   \draw [->] (138.95bp,247.71bp) .. controls (131.78bp,243.16bp) and (122.64bp,237.36bp)  .. (105.64bp,226.56bp);
   % Node: \texttt{Show}
 \begin{scope}
@@ -105,9 +108,11 @@
 \end{scope}
   % Node: \kindStar
 \begin{scope}
-  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \definecolor{strokecol}{rgb}{0.75,0.75,0.75};
   \pgfsetstrokecolor{strokecol}
   \draw (165bp,266bp) -- (139bp,266bp) -- (139bp,247bp) -- (165bp,247bp) -- cycle;
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
   \draw (152bp,256bp) node {$\kindStar$};
 \end{scope}
   % Node: \texttt{RealFloat}
@@ -154,9 +159,11 @@
 \end{scope}
   % Node: \emptyset
 \begin{scope}
-  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \definecolor{strokecol}{rgb}{0.75,0.75,0.75};
   \pgfsetstrokecolor{strokecol}
   \draw (110bp,24bp) -- (84bp,24bp) -- (84bp,1bp) -- (110bp,1bp) -- cycle;
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
   \draw (97bp,12bp) node {$\emptyset$};
 \end{scope}
   % Node: \texttt{Eq}

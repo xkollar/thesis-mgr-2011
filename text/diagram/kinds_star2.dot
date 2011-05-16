@@ -2,30 +2,42 @@ digraph kinds {
 	graph [ranksep=0.25];
 	node [shape=box];
 
-	"\star" -> "\texttt{Eq}";
-	"\star" -> "\texttt{Show}";
-	"\star" -> "\texttt{Read}";
+	"\kindStar" [color=gray];
+	"\texttt{Eq} \cap \texttt{Show}" [color=gray];
+	"\texttt{Eq} \cap \texttt{Read}" [color=gray];
+	"\texttt{Ord} \cap \texttt{Show}" [color=gray];
+	"\texttt{Show} \cap \texttt{Read}" [color=gray];
+	"\texttt{Ord} \cap \texttt{Show}" [color=gray];
+	"\texttt{Ord} \cap \texttt{Read}" [color=gray];
+	"\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}" [color=gray];
+	"\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}" [color=gray];
+	"\emptyset" [color=gray];
+
+
+	"\kindStar" -> "\texttt{Eq}" [color=gray];
+	"\kindStar" -> "\texttt{Show}" [color=gray];
+	"\kindStar" -> "\texttt{Read}" [color=gray];
 	// {rank=same; "\texttt{Eq}"; "\texttt{Show}"; "\texttt{Read}"};
 
 	"\texttt{Eq}" -> "\texttt{Ord}";
-	"\texttt{Eq}" -> "\texttt{Eq} \cap \texttt{Show}";
-	"\texttt{Eq}" -> "\texttt{Eq} \cap \texttt{Read}";
-	"\texttt{Show}" -> "\texttt{Eq} \cap \texttt{Show}";
-	"\texttt{Show}" -> "\texttt{Show} \cap \texttt{Read}";
-	"\texttt{Read}" -> "\texttt{Eq} \cap \texttt{Read}";
-	"\texttt{Read}" -> "\texttt{Show} \cap \texttt{Read}";
+	"\texttt{Eq}" -> "\texttt{Eq} \cap \texttt{Show}" [color=gray];
+	"\texttt{Eq}" -> "\texttt{Eq} \cap \texttt{Read}" [color=gray];
+	"\texttt{Show}" -> "\texttt{Eq} \cap \texttt{Show}" [color=gray];
+	"\texttt{Show}" -> "\texttt{Show} \cap \texttt{Read}" [color=gray];
+	"\texttt{Read}" -> "\texttt{Eq} \cap \texttt{Read}" [color=gray];
+	"\texttt{Read}" -> "\texttt{Show} \cap \texttt{Read}" [color=gray];
 
-	"\texttt{Ord}" -> "\texttt{Ord} \cap \texttt{Show}";
-	"\texttt{Ord}" -> "\texttt{Ord} \cap \texttt{Read}";
-	"\texttt{Eq} \cap \texttt{Show}" -> "\texttt{Ord} \cap \texttt{Show}";
-	"\texttt{Eq} \cap \texttt{Show}" -> "\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}";
-	"\texttt{Eq} \cap \texttt{Read}" -> "\texttt{Ord} \cap \texttt{Read}";
-	"\texttt{Eq} \cap \texttt{Read}" -> "\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}";
-	"\texttt{Show} \cap \texttt{Read}" -> "\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}";
+	"\texttt{Ord}" -> "\texttt{Ord} \cap \texttt{Show}" [color=gray];
+	"\texttt{Ord}" -> "\texttt{Ord} \cap \texttt{Read}" [color=gray];
+	"\texttt{Eq} \cap \texttt{Show}" -> "\texttt{Ord} \cap \texttt{Show}" [color=gray];
+	"\texttt{Eq} \cap \texttt{Show}" -> "\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}" [color=gray];
+	"\texttt{Eq} \cap \texttt{Read}" -> "\texttt{Ord} \cap \texttt{Read}" [color=gray];
+	"\texttt{Eq} \cap \texttt{Read}" -> "\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}" [color=gray];
+	"\texttt{Show} \cap \texttt{Read}" -> "\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}" [color=gray];
 
-	"\texttt{Ord} \cap \texttt{Show}" -> "\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}";
-	"\texttt{Ord} \cap \texttt{Read}" -> "\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}";
-	"\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}" -> "\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}";
+	"\texttt{Ord} \cap \texttt{Show}" -> "\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}" [color=gray];
+	"\texttt{Ord} \cap \texttt{Read}" -> "\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}" [color=gray];
+	"\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}" -> "\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}" [color=gray];
 
 	"\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}" -> "\emptyset" [style=dotted,color=gray];
 }

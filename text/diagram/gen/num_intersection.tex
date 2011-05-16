@@ -4,10 +4,13 @@
 %%
 \pgfsetcolor{black}
   % Edge: \texttt{Eq} -> \texttt{Eq} \cap \texttt{Show}
+  \pgfsetcolor{gray}
   \draw [->] (23.665bp,82.077bp) .. controls (25.653bp,78.985bp) and (27.849bp,75.567bp)  .. (35.595bp,63.518bp);
   % Edge: \texttt{Eq} \cap \texttt{Show} -> \texttt{Num}
+  \pgfsetcolor{black}
   \draw [->] (43bp,40.361bp) .. controls (43bp,37.7bp) and (43bp,34.793bp)  .. (43bp,21.685bp);
   % Edge: \texttt{Show} -> \texttt{Eq} \cap \texttt{Show}
+  \pgfsetcolor{gray}
   \draw [->] (63.934bp,83.402bp) .. controls (61.612bp,79.917bp) and (58.948bp,75.922bp)  .. (50.753bp,63.63bp);
   % Node: \texttt{Show}
 \begin{scope}
@@ -32,9 +35,11 @@
 \end{scope}
   % Node: \texttt{Eq} \cap \texttt{Show}
 \begin{scope}
-  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \definecolor{strokecol}{rgb}{0.75,0.75,0.75};
   \pgfsetstrokecolor{strokecol}
   \draw (75bp,64bp) -- (11bp,64bp) -- (11bp,41bp) -- (75bp,41bp) -- cycle;
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
   \draw (43bp,52bp) node {$\texttt{Eq} \cap \texttt{Show}$};
 \end{scope}
 %

@@ -2,11 +2,14 @@ digraph kinds {
 	graph [ranksep=0.25];
 	node [shape=box];
 
-	"\kindStar" -> "\texttt{Eq}";
-	"\kindStar" -> "\texttt{Enum}";
-	"\kindStar" -> "\texttt{Show}";
-	"\kindStar" -> "\texttt{Read}";
-	"\kindStar" -> "\texttt{Bounded}";
+	"\kindStar" [color=gray];
+	"\emptyset" [color=gray];
+
+	"\kindStar" -> "\texttt{Eq}" [color=gray];
+	"\kindStar" -> "\texttt{Enum}" [color=gray];
+	"\kindStar" -> "\texttt{Show}" [color=gray];
+	"\kindStar" -> "\texttt{Read}" [color=gray];
+	"\kindStar" -> "\texttt{Bounded}" [color=gray];
 	{rank=same; "\texttt{Read}"; "\texttt{Bounded}"; "\texttt{Enum}"; "\texttt{Eq}"; "\texttt{Show}"};
 	"\texttt{Eq}" -> "\texttt{Ord}";
 	"\texttt{Eq}" -> "\texttt{Num}";
