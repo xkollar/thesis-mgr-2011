@@ -249,7 +249,7 @@ can be found in figure~\ref{diagram:kinds_star2}.
 We should also notice, that for example class \texttt{Num} forms structure
 captured in figure \ref{diagram:num_intersection}. This way it is clear
 that not all types with instances for \texttt{Eq} and \texttt{Show}
-have to have instance for \texttt{Num}.
+have to have instance for \texttt{Num} (as figure \ref{diagram:kinds_star1} may suggest).
 
 Usage of \(\cap\) operator is also one of reasons to include \(\emptyset\)
 class.
@@ -263,13 +263,12 @@ class.
 \end{figure}
 
 Another interesting example is pictured on figure
-\ref{diagram:kinds_star_star} (please notice that symbol \(\to\)
-is overloaded here, representing either type constructor and kind
-constructor). It's another place where \(\emptyset\) comes in
-handy, as (without any surprise) \(\to\) class constructor
-is contravariant in first argument. Arrow between \texttt{Functor}
-and \texttt{Monad} is drawn dashed, as there is no such
-statement in Prelude, but we all know it's true.
+\ref{diagram:kinds_star_star} (\(\to\) symbol plays role of kind
+constructor there). It is another place where \(\emptyset\) comes in handy,
+as (without any surprise) \(\to\) class constructor is contravariant
+in first argument. Arrow between \texttt{Functor} and \texttt{Monad}
+is drawn dashed, as there is no such statement in \emph{Prelude}, but we all
+know it is true.
 
 \noindent
 \begin{figure}
@@ -313,7 +312,8 @@ This leads to situation, where one th
 In previous section has been pointed out some properties of
 Haskell type system that one should take into account when
 thinking about it. Following abstract syntax covers what
-have been told.
+have been told. (Please notice that symbol \(\to\) is overloaded here,
+representing either type constructor and kind constructor).
 
 \begin{align*}
 	\tau   & ::= \forall \, a {:} \kappa \, . \, \tau ~|~ \sigma \\
@@ -836,10 +836,12 @@ And original code could work as well for trivial instance.
 (Again notice that we are playing dangerous game here as it uses
 flexible instances and incoherent instances.)
 
-% \subsection{Type families and multi-parameter type classes}
-%
-% As opposed to solution with multi-parameter type classes, we will
-% now show, how to be able to \uv{add up} different types of numbers
+\subsection{Type families and multi-parameter type classes}
+
+As opposed to solution with multi-parameter type classes, we will
+now show, how to be able to \uv{add up} different types of numbers
+
+\cite{spjones:2009:funTypesFun}
 
 % \chapter{Unified view}
 
