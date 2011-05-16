@@ -1,5 +1,6 @@
 % vim: spell
-\documentclass[11pt,oneside,draft]{fithesis2}
+\documentclass[11pt,oneside,final]{fithesis2}
+%\documentclass[11pt,oneside,draft]{fithesis2}
 
 %\usepackage[draft]{pgf}
 \usepackage{tikz}
@@ -8,8 +9,6 @@
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref}
-\usepackage[all]{hypcap}
 \usepackage{caption}
 
 \usepackage{lmodern}
@@ -21,6 +20,12 @@
 \usepackage{enumerate}
 \usepackage{mathpartir}
 \usepackage{comment}
+
+%\usepackage[nottoc]{tocbibind}
+\usepackage{tocbibind}
+
+\usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref}
+\usepackage[all]{hypcap}
 
 \clubpenalty=1000
 \widowpenalty=1000
@@ -91,8 +96,8 @@ The aim of the master's thesis/work is to provide...
 Haskell, type system, type extension
 \end{ThesisKeyWords}
 
-\clearpage
-\addcontentsline{toc}{chapter}{Contents}
+% \clearpage
+% \addcontentsline{toc}{chapter}{Contents}
 \tableofcontents
 \listoffigures
 
@@ -843,8 +848,10 @@ Someone might think that this work leads to conclusion that Haskell is somehow n
 That is not true. Big picture. Only good language pushes one to extend it\dots using features
 to its limits, to see what can be done, stimulates thinking about things.
 
-\clearpage
-\addcontentsline{toc}{chapter}{\bibname}
+\cite{GADT+Kind=Dep}
+
+% \clearpage
+% \addcontentsline{toc}{chapter}{\bibname}
 %\bibliographystyle{apalike}
 \bibliographystyle{plain}
 \bibliography{bibliography}
