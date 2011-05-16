@@ -1,0 +1,32 @@
+digraph kinds {
+	graph [ranksep=0.25];
+	node [shape=box];
+
+	"\emptyset \to \kindStar" -> "\texttt{Eq} \to \kindStar";
+	"\emptyset \to \kindStar" -> "\emptyset \to \texttt{Eq}";
+	"\texttt{Eq} \to \kindStar" -> "\kindStar \to \kindStar";
+	"\texttt{Eq} \to \kindStar" -> "\texttt{Eq} \to \texttt{Eq}";
+	"\emptyset \to \texttt{Eq}" -> "\texttt{Eq} \to \texttt{Eq}";
+	"\emptyset \to \texttt{Eq}" -> "\emptyset \to \emptyset";
+
+	//"\kindStar \to \kindStar" -> "\kindStar \to \texttt{Eq}"
+	"\kindStar \to \kindStar" -> "\texttt{\texttt{Functor}}";
+	"\kindStar \to \kindStar" -> "\kindStar \to \texttt{Eq}";
+	"\texttt{\texttt{Functor}}" -> "\texttt{\texttt{Monad}}" [style=dashed];
+	"\texttt{\texttt{Monad}}" -> "\kindStar \to \emptyset" [style=dotted,color=gray];
+
+	{rank=same; "\kindStar \to \texttt{Eq}"; "\texttt{Eq} \to \emptyset"};
+	{rank=same; "\texttt{Eq} \to \kindStar"; "\emptyset \to \texttt{Eq}"};
+	{rank=same; "\texttt{Eq} \to \texttt{Eq}"; "\emptyset \to \emptyset"; "\kindStar \to \kindStar"};
+
+	"\texttt{Eq} \to \texttt{Eq}" -> "\kindStar \to \texttt{Eq}";
+	"\texttt{Eq} \to \texttt{Eq}" -> "\texttt{Eq} \to \emptyset";
+	"\emptyset \to \emptyset" -> "\texttt{Eq} \to \emptyset";
+	"\kindStar \to \texttt{Eq}" -> "\kindStar \to \emptyset" [style=dotted,color=gray];
+	"\texttt{Eq} \to \emptyset" -> "\kindStar \to \emptyset" [style=dotted,color=gray];
+	// "\emptyset \to \emptyset" -> "\kindStar \to \emptyset" [style=dotted,color=gray]
+
+	"\emptyset \to \emptyset" [color=gray];
+	"\texttt{Eq} \to \emptyset" [color=gray];
+	"\kindStar \to \emptyset" [color=gray];
+}
