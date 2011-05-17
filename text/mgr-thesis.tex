@@ -307,6 +307,7 @@ We will show how to deal with this later. % XXX : later... multiparam type class
 This leads to situation, where one th
 
 \section{Mental framework}
+\label{section:MentalFramework}
 
 In previous section has been pointed out some properties of
 Haskell type system that one should take into account when
@@ -488,7 +489,7 @@ This extension is implemented in \texttt{GHC} and can be enabled via
 \texttt{LANGUAGE} pragma \texttt{MultiParamTypeClasses}.
 
 With extension classes are no more simple subsets but relations~-- subsets of Cartesian products.
-This requires us to enrich a bit our mental framework.
+This requires us to enrich a bit our mental framework (chapter \ref{section:MentalFramework}).
 
 \begin{align*}
 	a^n      & ::= \overbrace{(a,\dots,a)}^n \\
@@ -573,9 +574,18 @@ way that they are functions. (Or at least some of their parameters.)
 
 \section{Type families}
 
+Type functions\dots
+
+\cite{spjones:openTypeFunctions}
+\cite{spjones:2009:funTypesFun}
+
 \section{Generalised algebraic datatypes}
 
+\cite{GADT+Kind=Dep}
+
 \section{Extensible kinds}
+
+\cite{GADT+Kind=Dep}
 
 \section{Rank-n types}
 \label{extension:rankn}
@@ -852,7 +862,8 @@ class GNum a b where
     TypePlus a b :: *
     (+) :: a -> b -> TypePlus a b
 \end{code}
-Class \texttt{GNum} (generalised \texttt{Num}) provides\dots
+Class \texttt{GNum} provides not only \texttt{(+)} function, but
+also type function \texttt{TypePlus}, that
 
 \begin{code}
 instance GNum Float Float where
@@ -872,6 +883,20 @@ instance GNum Int Int where
     (+) = primPlusInt
 \end{code}
 
+Code for instances is pretty much self-explanatory.
+Worth noticing are heterogeneous instances. Symbol
+\texttt{(+)} on right side of defining equation is
+in both cases referring to the definition given
+by \texttt{GNum Float Float}.
+
+Judging whether subtyping is good or bad is not in mine
+competency. Nevertheless it is easier to loose track of what is happening
+with growing amount of things done implicitly.  Also, reading and
+% strange/foreign/alien
+understanding alien code becomes harder with too much of
+implicitness. There is thin line and nobody draws it on the same place.
+Even \cite{python:zen} states that \uv{Explicit is better than implicit.}
+
 % \chapter{Unified view}
 
 % \chapter{Own extension proposal}
@@ -885,8 +910,6 @@ Oh, and of course:
 Someone might think that this work leads to conclusion that Haskell is somehow not good.
 That is not true. Big picture. Only good language pushes one to extend it\dots using features
 to its limits, to see what can be done, stimulates thinking about things.
-
-\cite{GADT+Kind=Dep}
 
 \clearpage
 \phantomsection
