@@ -8,42 +8,32 @@
   % Edge: \texttt{Show} -> \texttt{Num}
   \draw [->] (207bp,205.23bp) .. controls (207bp,202.29bp) and (207bp,199bp)  .. (207bp,185.56bp);
   % Edge: \kindStar -> \texttt{Read}
-  \pgfsetcolor{gray}
-  \draw [->] (138.79bp,252.83bp) .. controls (120.95bp,248.45bp) and (88.037bp,240.01bp)  .. (42.198bp,224.81bp);
+  \draw [->,dashed] (138.79bp,252.83bp) .. controls (120.95bp,248.45bp) and (88.037bp,240.01bp)  .. (42.198bp,224.81bp);
   % Edge: \kindStar -> \texttt{Enum}
-  \draw [->] (165.04bp,252.16bp) .. controls (186.09bp,245.97bp) and (228.14bp,233.61bp)  .. (266.82bp,222.23bp);
+  \draw [->,dashed] (165.04bp,252.16bp) .. controls (186.09bp,245.97bp) and (228.14bp,233.61bp)  .. (266.82bp,222.23bp);
   % Edge: \texttt{Ix} -> \emptyset
-  \draw [->,dotted] (102.47bp,124.08bp) .. controls (101.48bp,103.92bp) and (99.364bp,60.469bp)  .. (97.575bp,23.787bp);
+  \draw [->,dashed] (102.47bp,124.08bp) .. controls (101.48bp,103.92bp) and (99.364bp,60.469bp)  .. (97.575bp,23.787bp);
   % Edge: \kindStar -> \texttt{Show}
-  \draw [->] (165.03bp,246.52bp) .. controls (170.71bp,242.39bp) and (177.54bp,237.42bp)  .. (192.51bp,226.54bp);
+  \draw [->,dashed] (165.03bp,246.52bp) .. controls (170.71bp,242.39bp) and (177.54bp,237.42bp)  .. (192.51bp,226.54bp);
   % Edge: \texttt{Floating} -> \texttt{RealFloat}
-  \pgfsetcolor{black}
   \draw [->] (157.85bp,82.361bp) .. controls (158.05bp,79.7bp) and (158.26bp,76.793bp)  .. (159.22bp,63.685bp);
   % Edge: \texttt{RealFloat} -> \emptyset
-  \pgfsetcolor{gray}
-  \draw [->,dotted] (143.78bp,42.441bp) .. controls (136.17bp,37.493bp) and (127bp,31.525bp)  .. (110.41bp,20.725bp);
+  \draw [->,dashed] (143.78bp,42.441bp) .. controls (136.17bp,37.493bp) and (127bp,31.525bp)  .. (110.41bp,20.725bp);
   % Edge: \texttt{Fractional} -> \texttt{Floating}
-  \pgfsetcolor{black}
   \draw [->] (169.53bp,124.23bp) .. controls (168.35bp,121.38bp) and (167.04bp,118.21bp)  .. (161.85bp,105.71bp);
   % Edge: \texttt{Num} -> \texttt{Fractional}
   \draw [->] (198.33bp,164.49bp) .. controls (195.55bp,161.12bp) and (192.38bp,157.28bp)  .. (182.73bp,145.58bp);
   % Edge: \kindStar -> \texttt{Eq}
-  \pgfsetcolor{gray}
-  \draw [->] (152bp,246.32bp) .. controls (152bp,243.67bp) and (152bp,240.7bp)  .. (152bp,227.59bp);
+  \draw [->,dashed] (152bp,246.32bp) .. controls (152bp,243.67bp) and (152bp,240.7bp)  .. (152bp,227.59bp);
   % Edge: \texttt{Real} -> \texttt{Integral}
-  \pgfsetcolor{black}
   \draw [->] (268.28bp,124.44bp) .. controls (275.57bp,120.24bp) and (284.13bp,115.29bp)  .. (301.03bp,105.53bp);
   % Edge: \texttt{Read} -> \emptyset
-  \pgfsetcolor{gray}
-  \draw [->,dotted] (21bp,205.26bp) .. controls (21bp,189.74bp) and (21bp,160.17bp)  .. (21bp,135bp) .. controls (21bp,135bp) and (21bp,135bp)  .. (21bp,94bp) .. controls (21bp,62.07bp) and (52.381bp,37.317bp)  .. (83.762bp,18.559bp);
+  \draw [->,dashed] (21bp,205.26bp) .. controls (21bp,189.74bp) and (21bp,160.17bp)  .. (21bp,135bp) .. controls (21bp,135bp) and (21bp,135bp)  .. (21bp,94bp) .. controls (21bp,62.07bp) and (52.381bp,37.317bp)  .. (83.762bp,18.559bp);
   % Edge: \texttt{Enum} -> \texttt{Integral}
-  \pgfsetcolor{black}
   \draw [->] (290.93bp,205.17bp) .. controls (296.36bp,185.08bp) and (308.1bp,141.69bp)  .. (317.84bp,105.69bp);
   % Edge: \texttt{Bounded} -> \emptyset
-  \pgfsetcolor{gray}
-  \draw [->,dotted] (82.342bp,205.46bp) .. controls (73.504bp,190.43bp) and (59bp,161.69bp)  .. (59bp,135bp) .. controls (59bp,135bp) and (59bp,135bp)  .. (59bp,94bp) .. controls (59bp,71.309bp) and (71.127bp,48.087bp)  .. (87.607bp,23.71bp);
+  \draw [->,dashed] (82.342bp,205.46bp) .. controls (73.504bp,190.43bp) and (59bp,161.69bp)  .. (59bp,135bp) .. controls (59bp,135bp) and (59bp,135bp)  .. (59bp,94bp) .. controls (59bp,71.309bp) and (71.127bp,48.087bp)  .. (87.607bp,23.71bp);
   % Edge: \texttt{Ord} -> \texttt{Ix}
-  \pgfsetcolor{black}
   \draw [->] (138.39bp,164.49bp) .. controls (133.8bp,160.66bp) and (128.48bp,156.23bp)  .. (115.69bp,145.58bp);
   % Edge: \texttt{Eq} -> \texttt{Ord}
   \draw [->] (151.72bp,204.36bp) .. controls (151.65bp,201.7bp) and (151.58bp,198.79bp)  .. (151.26bp,185.69bp);
@@ -56,14 +46,11 @@
   % Edge: \texttt{Real} -> \texttt{RealFrac}
   \draw [->] (247.11bp,124.23bp) .. controls (246.3bp,121.19bp) and (245.38bp,117.78bp)  .. (241.83bp,104.56bp);
   % Edge: \texttt{Integral} -> \emptyset
-  \pgfsetcolor{gray}
-  \draw [->,dotted] (297.66bp,82.42bp) .. controls (274.33bp,71.137bp) and (237.25bp,53.979bp)  .. (204bp,42bp) .. controls (175.58bp,31.763bp) and (141.91bp,22.827bp)  .. (110.04bp,15.008bp);
+  \draw [->,dashed] (297.66bp,82.42bp) .. controls (274.33bp,71.137bp) and (237.25bp,53.979bp)  .. (204bp,42bp) .. controls (175.58bp,31.763bp) and (141.91bp,22.827bp)  .. (110.04bp,15.008bp);
   % Edge: \texttt{RealFrac} -> \texttt{RealFloat}
-  \pgfsetcolor{black}
   \draw [->] (218.66bp,83.441bp) .. controls (209.72bp,78.803bp) and (199.05bp,73.268bp)  .. (180.28bp,63.523bp);
   % Edge: \kindStar -> \texttt{Bounded}
-  \pgfsetcolor{gray}
-  \draw [->] (138.95bp,247.71bp) .. controls (131.78bp,243.16bp) and (122.64bp,237.36bp)  .. (105.64bp,226.56bp);
+  \draw [->,dashed] (138.95bp,247.71bp) .. controls (131.78bp,243.16bp) and (122.64bp,237.36bp)  .. (105.64bp,226.56bp);
   % Node: \texttt{Show}
 \begin{scope}
   \definecolor{strokecol}{rgb}{0.0,0.0,0.0};

@@ -5,11 +5,11 @@ digraph kinds {
 	"\kindStar" [color=gray];
 	"\emptyset" [color=gray];
 
-	"\kindStar" -> "\texttt{Eq}" [color=gray];
-	"\kindStar" -> "\texttt{Enum}" [color=gray];
-	"\kindStar" -> "\texttt{Show}" [color=gray];
-	"\kindStar" -> "\texttt{Read}" [color=gray];
-	"\kindStar" -> "\texttt{Bounded}" [color=gray];
+	"\kindStar" -> "\texttt{Eq}" [style=dashed];
+	"\kindStar" -> "\texttt{Enum}" [style=dashed];
+	"\kindStar" -> "\texttt{Show}" [style=dashed];
+	"\kindStar" -> "\texttt{Read}" [style=dashed];
+	"\kindStar" -> "\texttt{Bounded}" [style=dashed];
 	{rank=same; "\texttt{Read}"; "\texttt{Bounded}"; "\texttt{Enum}"; "\texttt{Eq}"; "\texttt{Show}"};
 	"\texttt{Eq}" -> "\texttt{Ord}";
 	"\texttt{Eq}" -> "\texttt{Num}";
@@ -26,9 +26,9 @@ digraph kinds {
 	"\texttt{Fractional}" -> "\texttt{RealFrac}";
 	"\texttt{RealFrac}" -> "\texttt{RealFloat}";
 	"\texttt{Floating}" -> "\texttt{RealFloat}";
-	"\texttt{Integral}" -> "\emptyset" [style=dotted,color=gray];
-	"\texttt{Ix}" -> "\emptyset" [style=dotted,color=gray];
-	"\texttt{RealFloat}" -> "\emptyset" [style=dotted,color=gray];
-	"\texttt{Read}" -> "\emptyset" [style=dotted,color=gray];
-	"\texttt{Bounded}" -> "\emptyset" [style=dotted,color=gray];
+	"\texttt{Integral}" -> "\emptyset" [style=dashed];
+	"\texttt{Ix}" -> "\emptyset" [style=dashed];
+	"\texttt{RealFloat}" -> "\emptyset" [style=dashed];
+	"\texttt{Read}" -> "\emptyset" [style=dashed];
+	"\texttt{Bounded}" -> "\emptyset" [style=dashed];
 }

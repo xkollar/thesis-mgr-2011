@@ -4,7 +4,7 @@ digraph kinds {
 
 	"\texttt{Eq} \cap \texttt{Show}" [color=gray];
 
-	"\texttt{Eq}" -> "\texttt{Eq} \cap \texttt{Show}" [color=gray];
-	"\texttt{Show}" -> "\texttt{Eq} \cap \texttt{Show}" [color=gray];
+	"\texttt{Eq}" -> "\texttt{Eq} \cap \texttt{Show}" [style=dashed];
+	"\texttt{Show}" -> "\texttt{Eq} \cap \texttt{Show}" [style=dashed];
 	"\texttt{Eq} \cap \texttt{Show}" -> "\texttt{Num}";
 }

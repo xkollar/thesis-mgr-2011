@@ -4,50 +4,47 @@
 %%
 \pgfsetcolor{black}
   % Edge: \texttt{Read} -> \texttt{Show} \cap \texttt{Read}
-  \pgfsetcolor{gray}
-  \draw [->] (232.63bp,167.4bp) .. controls (238.21bp,163.06bp) and (244.82bp,157.92bp)  .. (259.19bp,146.74bp);
+  \draw [->,dashed] (232.63bp,167.4bp) .. controls (238.21bp,163.06bp) and (244.82bp,157.92bp)  .. (259.19bp,146.74bp);
   % Edge: \texttt{Eq} \cap \texttt{Read} -> \texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}
-  \draw [->] (196.79bp,124.08bp) .. controls (199.91bp,120.62bp) and (203.41bp,116.76bp)  .. (213.58bp,105.52bp);
+  \draw [->,dashed] (196.79bp,124.08bp) .. controls (199.91bp,120.62bp) and (203.41bp,116.76bp)  .. (213.58bp,105.52bp);
   % Edge: \texttt{Eq} \cap \texttt{Show} \cap \texttt{Read} -> \texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}
-  \draw [->] (195.6bp,82.47bp) .. controls (184.09bp,77.798bp) and (170.67bp,72.351bp)  .. (149.12bp,63.601bp);
+  \draw [->,dashed] (195.6bp,82.47bp) .. controls (184.09bp,77.798bp) and (170.67bp,72.351bp)  .. (149.12bp,63.601bp);
   % Edge: \texttt{Ord} \cap \texttt{Show} -> \texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}
-  \draw [->] (57.662bp,83.441bp) .. controls (67.824bp,78.707bp) and (79.99bp,73.039bp)  .. (100.41bp,63.523bp);
+  \draw [->,dashed] (57.662bp,83.441bp) .. controls (67.824bp,78.707bp) and (79.99bp,73.039bp)  .. (100.41bp,63.523bp);
   % Edge: \texttt{Eq} -> \texttt{Eq} \cap \texttt{Read}
-  \draw [->] (120.2bp,169.7bp) .. controls (129.92bp,164.72bp) and (142.63bp,158.22bp)  .. (163.31bp,147.62bp);
+  \draw [->,dashed] (120.2bp,169.7bp) .. controls (129.92bp,164.72bp) and (142.63bp,158.22bp)  .. (163.31bp,147.62bp);
   % Edge: \texttt{Eq} \cap \texttt{Show} -> \texttt{Ord} \cap \texttt{Show}
-  \draw [->] (84.78bp,124.3bp) .. controls (77.557bp,119.9bp) and (69.215bp,114.83bp)  .. (52.699bp,104.77bp);
+  \draw [->,dashed] (84.78bp,124.3bp) .. controls (77.557bp,119.9bp) and (69.215bp,114.83bp)  .. (52.699bp,104.77bp);
   % Edge: \texttt{Eq} \cap \texttt{Read} -> \texttt{Ord} \cap \texttt{Read}
-  \draw [->] (168.45bp,124.3bp) .. controls (162bp,120bp) and (154.57bp,115.05bp)  .. (139.16bp,104.77bp);
+  \draw [->,dashed] (168.45bp,124.3bp) .. controls (162bp,120bp) and (154.57bp,115.05bp)  .. (139.16bp,104.77bp);
   % Edge: \texttt{Eq} -> \texttt{Ord}
-  \pgfsetcolor{black}
   \draw [->] (87.997bp,168.26bp) .. controls (79.995bp,163.39bp) and (70.108bp,157.37bp)  .. (52.367bp,146.57bp);
   % Edge: \texttt{Ord} \cap \texttt{Show} \cap \texttt{Read} -> \emptyset
-  \pgfsetcolor{gray}
-  \draw [->,dotted] (123bp,42.228bp) .. controls (123bp,39.648bp) and (123bp,36.8bp)  .. (123bp,23.708bp);
+  \draw [->,dashed] (123bp,42.228bp) .. controls (123bp,39.648bp) and (123bp,36.8bp)  .. (123bp,23.708bp);
   % Edge: \texttt{Show} \cap \texttt{Read} -> \texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}
-  \draw [->] (260.64bp,125.4bp) .. controls (256.02bp,121.45bp) and (250.64bp,116.83bp)  .. (237.57bp,105.63bp);
+  \draw [->,dashed] (260.64bp,125.4bp) .. controls (256.02bp,121.45bp) and (250.64bp,116.83bp)  .. (237.57bp,105.63bp);
   % Edge: \kindStar -> \texttt{Read}
-  \draw [->] (172.02bp,209.32bp) .. controls (178.56bp,204.96bp) and (186.7bp,199.53bp)  .. (203.01bp,188.66bp);
+  \draw [->,dashed] (172.02bp,209.32bp) .. controls (178.56bp,204.96bp) and (186.7bp,199.53bp)  .. (203.01bp,188.66bp);
   % Edge: \texttt{Read} -> \texttt{Eq} \cap \texttt{Read}
-  \draw [->] (210.67bp,167.4bp) .. controls (207.86bp,163.82bp) and (204.63bp,159.71bp)  .. (195.14bp,147.63bp);
+  \draw [->,dashed] (210.67bp,167.4bp) .. controls (207.86bp,163.82bp) and (204.63bp,159.71bp)  .. (195.14bp,147.63bp);
   % Edge: \texttt{Show} -> \texttt{Eq} \cap \texttt{Show}
-  \draw [->] (145.12bp,167.4bp) .. controls (139.7bp,163.26bp) and (133.32bp,158.39bp)  .. (119.23bp,147.63bp);
+  \draw [->,dashed] (145.12bp,167.4bp) .. controls (139.7bp,163.26bp) and (133.32bp,158.39bp)  .. (119.23bp,147.63bp);
   % Edge: \kindStar -> \texttt{Show}
-  \draw [->] (159bp,208.32bp) .. controls (159bp,205.45bp) and (159bp,202.19bp)  .. (159bp,188.72bp);
+  \draw [->,dashed] (159bp,208.32bp) .. controls (159bp,205.45bp) and (159bp,202.19bp)  .. (159bp,188.72bp);
   % Edge: \kindStar -> \texttt{Eq}
-  \draw [->] (145.97bp,208.52bp) .. controls (140.64bp,204.65bp) and (134.3bp,200.03bp)  .. (120.09bp,189.7bp);
+  \draw [->,dashed] (145.97bp,208.52bp) .. controls (140.64bp,204.65bp) and (134.3bp,200.03bp)  .. (120.09bp,189.7bp);
   % Edge: \texttt{Show} -> \texttt{Show} \cap \texttt{Read}
-  \draw [->] (180.27bp,169.38bp) .. controls (183.19bp,168.23bp) and (186.17bp,167.07bp)  .. (189bp,166bp) .. controls (203.22bp,160.62bp) and (218.88bp,154.95bp)  .. (242.57bp,146.56bp);
+  \draw [->,dashed] (180.27bp,169.38bp) .. controls (183.19bp,168.23bp) and (186.17bp,167.07bp)  .. (189bp,166bp) .. controls (203.22bp,160.62bp) and (218.88bp,154.95bp)  .. (242.57bp,146.56bp);
   % Edge: \texttt{Ord} -> \texttt{Ord} \cap \texttt{Show}
-  \draw [->] (35bp,125.4bp) .. controls (35bp,122.14bp) and (35bp,118.44bp)  .. (35bp,104.74bp);
+  \draw [->,dashed] (35bp,125.4bp) .. controls (35bp,122.14bp) and (35bp,118.44bp)  .. (35bp,104.74bp);
   % Edge: \texttt{Eq} \cap \texttt{Show} -> \texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}
-  \draw [->] (136.16bp,124.74bp) .. controls (150.05bp,119.88bp) and (166.51bp,114.12bp)  .. (190.92bp,105.58bp);
+  \draw [->,dashed] (136.16bp,124.74bp) .. controls (150.05bp,119.88bp) and (166.51bp,114.12bp)  .. (190.92bp,105.58bp);
   % Edge: \texttt{Eq} -> \texttt{Eq} \cap \texttt{Show}
-  \draw [->] (104bp,166.08bp) .. controls (104bp,163.44bp) and (104bp,160.57bp)  .. (104bp,147.52bp);
+  \draw [->,dashed] (104bp,166.08bp) .. controls (104bp,163.44bp) and (104bp,160.57bp)  .. (104bp,147.52bp);
   % Edge: \texttt{Ord} \cap \texttt{Read} -> \texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}
-  \draw [->] (123bp,83.228bp) .. controls (123bp,80.286bp) and (123bp,76.996bp)  .. (123bp,63.559bp);
+  \draw [->,dashed] (123bp,83.228bp) .. controls (123bp,80.286bp) and (123bp,76.996bp)  .. (123bp,63.559bp);
   % Edge: \texttt{Ord} -> \texttt{Ord} \cap \texttt{Read}
-  \draw [->] (54.095bp,126.89bp) .. controls (65.051bp,121.66bp) and (79.08bp,114.96bp)  .. (100.84bp,104.58bp);
+  \draw [->,dashed] (54.095bp,126.89bp) .. controls (65.051bp,121.66bp) and (79.08bp,114.96bp)  .. (100.84bp,104.58bp);
   % Node: \texttt{Show}
 \begin{scope}
   \definecolor{strokecol}{rgb}{0.0,0.0,0.0};

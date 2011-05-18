@@ -14,30 +14,30 @@ digraph kinds {
 	"\emptyset" [color=gray];
 
 
-	"\kindStar" -> "\texttt{Eq}" [color=gray];
-	"\kindStar" -> "\texttt{Show}" [color=gray];
-	"\kindStar" -> "\texttt{Read}" [color=gray];
+	"\kindStar" -> "\texttt{Eq}" [style=dashed];
+	"\kindStar" -> "\texttt{Show}" [style=dashed];
+	"\kindStar" -> "\texttt{Read}" [style=dashed];
 	// {rank=same; "\texttt{Eq}"; "\texttt{Show}"; "\texttt{Read}"};
 
 	"\texttt{Eq}" -> "\texttt{Ord}";
-	"\texttt{Eq}" -> "\texttt{Eq} \cap \texttt{Show}" [color=gray];
-	"\texttt{Eq}" -> "\texttt{Eq} \cap \texttt{Read}" [color=gray];
-	"\texttt{Show}" -> "\texttt{Eq} \cap \texttt{Show}" [color=gray];
-	"\texttt{Show}" -> "\texttt{Show} \cap \texttt{Read}" [color=gray];
-	"\texttt{Read}" -> "\texttt{Eq} \cap \texttt{Read}" [color=gray];
-	"\texttt{Read}" -> "\texttt{Show} \cap \texttt{Read}" [color=gray];
+	"\texttt{Eq}" -> "\texttt{Eq} \cap \texttt{Show}" [style=dashed];
+	"\texttt{Eq}" -> "\texttt{Eq} \cap \texttt{Read}" [style=dashed];
+	"\texttt{Show}" -> "\texttt{Eq} \cap \texttt{Show}" [style=dashed];
+	"\texttt{Show}" -> "\texttt{Show} \cap \texttt{Read}" [style=dashed];
+	"\texttt{Read}" -> "\texttt{Eq} \cap \texttt{Read}" [style=dashed];
+	"\texttt{Read}" -> "\texttt{Show} \cap \texttt{Read}" [style=dashed];
 
-	"\texttt{Ord}" -> "\texttt{Ord} \cap \texttt{Show}" [color=gray];
-	"\texttt{Ord}" -> "\texttt{Ord} \cap \texttt{Read}" [color=gray];
-	"\texttt{Eq} \cap \texttt{Show}" -> "\texttt{Ord} \cap \texttt{Show}" [color=gray];
-	"\texttt{Eq} \cap \texttt{Show}" -> "\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}" [color=gray];
-	"\texttt{Eq} \cap \texttt{Read}" -> "\texttt{Ord} \cap \texttt{Read}" [color=gray];
-	"\texttt{Eq} \cap \texttt{Read}" -> "\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}" [color=gray];
-	"\texttt{Show} \cap \texttt{Read}" -> "\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}" [color=gray];
+	"\texttt{Ord}" -> "\texttt{Ord} \cap \texttt{Show}" [style=dashed];
+	"\texttt{Ord}" -> "\texttt{Ord} \cap \texttt{Read}" [style=dashed];
+	"\texttt{Eq} \cap \texttt{Show}" -> "\texttt{Ord} \cap \texttt{Show}" [style=dashed];
+	"\texttt{Eq} \cap \texttt{Show}" -> "\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}" [style=dashed];
+	"\texttt{Eq} \cap \texttt{Read}" -> "\texttt{Ord} \cap \texttt{Read}" [style=dashed];
+	"\texttt{Eq} \cap \texttt{Read}" -> "\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}" [style=dashed];
+	"\texttt{Show} \cap \texttt{Read}" -> "\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}" [style=dashed];
 
-	"\texttt{Ord} \cap \texttt{Show}" -> "\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}" [color=gray];
-	"\texttt{Ord} \cap \texttt{Read}" -> "\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}" [color=gray];
-	"\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}" -> "\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}" [color=gray];
+	"\texttt{Ord} \cap \texttt{Show}" -> "\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}" [style=dashed];
+	"\texttt{Ord} \cap \texttt{Read}" -> "\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}" [style=dashed];
+	"\texttt{Eq} \cap \texttt{Show} \cap \texttt{Read}" -> "\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}" [style=dashed];
 
-	"\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}" -> "\emptyset" [style=dotted,color=gray];
+	"\texttt{Ord} \cap \texttt{Show} \cap \texttt{Read}" -> "\emptyset" [style=dashed];
 }
