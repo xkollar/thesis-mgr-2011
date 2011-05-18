@@ -1,16 +1,23 @@
 NAME=mgr-thesis
 
+BIBTEX=bibtex -terse
+PDFLATEX=pdflatex -interaction=batchmode
+
 all:$(NAME).pdf
 
+debug:
+	pdflatex $(NAME)
+	bibtex   $(NAME)
+
 final:
-	pdflatex $(NAME)
-	bibtex $(NAME)
-	pdflatex $(NAME)
-	pdflatex $(NAME)
+	$(PDFLATEX) $(NAME)
+	$(BIBTEX)   $(NAME)
+	$(PDFLATEX) $(NAME)
+	$(PDFLATEX) $(NAME)
 
 $(NAME).pdf: $(NAME).tex bibliography.bib
-	pdflatex $(NAME)
-	bibtex $(NAME)
+	$(PDFLATEX) $(NAME)
+	$(BIBTEX)   $(NAME)
 
 clean:
 	-rm *.*pk
