@@ -138,6 +138,13 @@ simpler programs combined into more complex ones.
 Check for these rules is done statically (at compile time).
 %Static typing, Strong typing, \dots
 
+\section{Basics}
+
+Values, types, kinds. \(\kindStar\). Doraz na to co je nove v pristupe
+mozeme extenzie videne jednotnejsie... triedy ako kindy...
+
+attempt for more unified view of TC \& kind in Hask TS.
+
 \section{Haskell type system}
 
 % It is desirable that we give description of the original type system before
@@ -180,38 +187,45 @@ it can take as argument value of any type and it returns value of the
 same type. Well, not exactly any type. We are interested in inhabited
 types only. But we know \uv{category} that consists only of these types~--
 kind \(\kindStar\). Let us write that in explicit way.
-
 %\begin{example}~
 \begin{align*}
-\texttt{id} & :: \forall a \in {\kindStar} \, . \, a \to a \\
-\texttt{const} & :: \forall a \in {\kindStar} \, . \, \forall b \in {\kindStar} \, . \, a \to b \to a \\
+\texttt{id}    & \hasType \forall a \in \kindStar \typeDot a \typeTo a \\
+\texttt{const} & \hasType \forall a \in \kindStar \typeDot \forall b \in {\kindStar} \typeDot a \typeTo b \typeTo a \\
 \end{align*}
-% \[ \texttt{id} :: \forall a \in {\kindStar} \, . \, a \to a \]
-% \[ \texttt{const} :: \forall a \in {\kindStar} \, . \, \forall b \in {\kindStar} \, . \, a \to b \to a \]
+% \[ \texttt{id} :: \forall a \in {\kindStar} \typeDot a \typeTo a \]
+% \[ \texttt{const} :: \forall a \in {\kindStar} \typeDot \forall b \in {\kindStar} \typeDot a \typrTo b \typeTo a \]
 %\end{example}
+% XXX: is "theorists" used right?
+However, through this thesis we will rather follow tradition of type theorists.
+\begin{align*}
+\texttt{id}    & \hasType \forall a \hasKind \kindStar \typeDot a \typeTo a \\
+\texttt{const} & \hasType \forall a \hasKind \kindStar \typeDot \forall b \hasKind {\kindStar} \typeDot a \typeTo b \typeTo a \\
+\end{align*}
 
-Somewhere between concrete and polymorphic lies values with polymorphic overloading.
+
+Somewhere between concrete and polymorphic there are values with polymorphic overloading.
 \begin{code}
 1    :: Num a => a
 elem :: Eq a => a -> [a] -> Bool
 sum  :: Num a => [a] -> a
 \end{code}
 What do these types mean? There is clearly some sort of quantification, but not over all
-possible \(\kindStar\) types. Those classes can therefore be taken as subkinds of \(\kindStar\).
+possible \(\kindStar\)-types. Those classes can therefore be taken as subkinds of \(\kindStar\).
 Again, let us make this notion more explicit.
 
 %\begin{example}~
 \begin{align*}
-\texttt{1} & :: \forall a \in \texttt {Num} \, . \, a \\
-\texttt{elem} & :: \forall a \in \texttt{Eq} \, . \, a \to [a] \to \texttt{Bool} \\
-\texttt{sum} & :: \forall a \in \texttt{Num} \, . \, [a] \to a \\
-% \[ \texttt{1} :: \forall a \in \texttt {Num} \, . \, a \]
-% \[ \texttt{elem} :: \forall a \in \texttt{Eq} \, . \, a \to [a] \to \texttt{Bool} \]
-% \[ \texttt{sum} :: \forall a \in \texttt{Num} \, . \, [a] \to a \]
+\texttt{1}    & \hasType \forall a \hasKind \texttt {Num} \typeDot a \\
+\texttt{elem} & \hasType \forall a \hasKind \texttt{Eq} \typeDot a \typeTo [a] \typeTo \texttt{Bool} \\
+\texttt{sum}  & \hasType \forall a \hasKind \texttt{Num} \typeDot [a] \typeTo a \\
+% \[ \texttt{1} :: \forall a \in \texttt {Num} \typeDot a \]
+% \[ \texttt{elem} :: \forall a \in \texttt{Eq} \typeDot a \typeTo [a] \typeTo \texttt{Bool} \]
+% \[ \texttt{sum} :: \forall a \in \texttt{Num} \typeDot [a] \typeTo a \]
 \end{align*}
 %\end{example}
 
-And we somehow know, that \( \texttt{Eq}, \texttt{Num} \subseteq \kindStar \).
+The classes, as sets of types, are subkinds of kind of all types~-- \(\kindStar\).
+%And we somehow know, that \( \texttt{Eq}, \texttt{Num} \subseteq \kindStar \).
 Standard Prelude \(\kindStar\)-classes and subkind relation on them is
 captured in figure~\ref{diagram:kinds_star1}.
 \noindent
@@ -232,8 +246,8 @@ ex :: (C1 a, C2 a) => a
 \end{code}
 What is meaning of this type? Clearly, \( a \in \texttt{C1} \) and \( a \in \texttt{C2} \) must hold.
 Giving familiar notion to this phenomenon we will write following.
-\[ \texttt{ex} :: \forall \, a \in \texttt{C1} \cap \texttt{C2} \, . \, a \]
-Fragment of emerging structure including standard Prelude classes \texttt{Eq}, \texttt{Ord}, \texttt{Show}, and \texttt{Read}
+\[ \texttt{ex} \hasType \forall \, a \hasKind \texttt{C1} \cap \texttt{C2} \typeDot a \]
+A fragment of the emerging structure including standard Prelude classes \texttt{Eq}, \texttt{Ord}, \texttt{Show}, and \texttt{Read}
 can be found in figure~\ref{diagram:kinds_star2}.
 
 % \end{example}
@@ -262,10 +276,10 @@ Usage of \(\cap\) is also one of reasons to include \(\emptyset\) class.
 \end{figure}
 
 Another interesting example is pictured on figure
-\ref{diagram:kinds_star_star} (\(\to\) symbol plays role of kind
+\ref{diagram:kinds_star_star} (\(\kindTo\) symbol plays role of kind
 constructor there). It is another place where \(\emptyset\) comes in handy,
-as (without any surprise) \(\to\) class constructor is contravariant
-in first argument. Arrow between \texttt{Functor} and \texttt{Monad}
+as (without any surprise) \(\kindTo\) class constructor is contravariant
+in first argument (for example see \ref{extension:multiparam}). Arrow between \texttt{Functor} and \texttt{Monad}
 is drawn dashed, as there is no such statement in \emph{Prelude}, but we all
 know it is true.
 
@@ -273,7 +287,7 @@ know it is true.
 \begin{figure}
 	\centering
 	\scalebox{1.0}{\input{diagram/gen/kinds_star_star}}
-	\caption[Some \uv{emptyset to star} classes]{Some of \(\emptyset \to \kindStar\) classes}
+	\caption[Some \uv{emptyset to star} classes]{Some of \(\emptyset \kindTo \kindStar\) classes}
 	\label{diagram:kinds_star_star}
 \end{figure}
 
@@ -286,12 +300,12 @@ ex :: (Eq (m a), Monad m) => m a -> a -> Bool
 ex x y = x == return y
 \end{code}
 There are few possibilities how to deal with this. For example
-\[ \texttt{ex} :: \forall m \in \texttt{Monad} \cap \emptyset \to \texttt{Eq} \, . \, \forall m \, a \in \texttt{Eq} \, . \, m \, a \to a \to \texttt{Bool} \]
+\[ \texttt{ex} \hasType \forall m \hasKind \texttt{Monad} \cap (\emptyset \kindTo \texttt{Eq}) \typeDot \forall m \, a \hasKind \texttt{Eq} \typeDot m \, a \typeTo a \typeTo \texttt{Bool} \]
 but this would require to make possible quantification not only over variables but over applications too.
 % We will rather stick with following alternative:
 Alternatively, taking \(\{\_\}\) as a meta-operator mapping type to singleton kind,
 it is possible to express desired type by
-\[ \texttt{ex} :: \forall a \in \kindStar \, . \, \forall m \in \texttt{Monad} \cap \{ a \} \to \texttt{Eq} \, . \, m \, a \to a \to \texttt{Bool} \]
+\[ \texttt{ex} \hasType \forall a \hasKind \kindStar \typeDot \forall m \hasKind \texttt{Monad} \cap (\{ a \} \kindTo \texttt{Eq}) \typeDot m \, a \typeTo a \typeTo \texttt{Bool} \]
 Both mentioned possibilities embodies some \uv{dependency}, that gives significance to order of quantifications.
 We will show how to deal with this later. % XXX : later... multiparam type classes.
 %\end{example}
@@ -301,7 +315,7 @@ We will show how to deal with this later. % XXX : later... multiparam type class
 % ex :: (Monad m, Eq (m a), Eq a) => m a -> a -> Bool
 % ex x y = y == y && x == return y
 % \end{code}
-% \[ \texttt{ex} :: \forall m \in \texttt{Monad} \cap (\texttt{Eq} \to \texttt{Eq}) \, . \, \forall a \in \texttt{Eq} \, . \, m a \to a \to \texttt{Bool} \]
+% \[ \texttt{ex} :: \forall m \in \texttt{Monad} \cap (\texttt{Eq} \kindTo \texttt{Eq}) \typeDot \forall a \in \texttt{Eq} \typeDot m a \typeTo a \typeTo \texttt{Bool} \]
 % \end{example}
 
 This leads to situation, where one th
@@ -309,16 +323,17 @@ This leads to situation, where one th
 \section{Mental framework}
 \label{section:MentalFramework}
 
-In previous section has been pointed out some properties of
+% XXX: previous: Still true?
+In the previous section we have pointed out few properties of
 Haskell type system that one should take into account when
 thinking about it. Following abstract syntax covers what
-have been told. (Please notice that symbol \(\to\) is overloaded here,
-representing either type constructor and kind constructor).
+have been told. (Notice that symbol \(\to\) is overloaded here,
+representing both type constructor and kind constructor).
 
 \begin{align*}
-	\tau   & ::= \forall \, a {:} \kappa \, . \, \tau ~|~ \sigma \\
-	\sigma & ::= a ~|~ c ~|~ \sigma \to \sigma ~|~ \sigma \, \sigma \\
-	\kappa & ::= K ~|~ \kindStar ~|~ \kappa \to \kappa ~|~ \kappa \cap \kappa \\
+	\tau   & ::= \forall \, a {:} \kappa \typeDot \tau ~|~ \sigma \\
+	\sigma & ::= a ~|~ c ~|~ \sigma \typeTo \sigma ~|~ \sigma \, \sigma \\
+	\kappa & ::= K ~|~ \kindStar ~|~ \kappa \kindTo \kappa ~|~ \kappa \cap \kappa \\
 \end{align*}
 where
 \begin{itemize}
@@ -329,8 +344,10 @@ where
 	\item and \(\kappa\) represents kinds.
 \end{itemize}
 
-Key in understanding this fact (noticed by \cite{libor}),
-that as classes are sets of type constructors, they are kinds.
+The crucial fact (noticed by \cite{libor}) used through this thesis is that type classes are in fact
+kinds, subkinds of \(\kindStar\).
+% Key in understanding this fact (noticed by \cite{libor}),
+% that as classes are sets of type constructors, they are kinds.
 Not only that, they form obvious structure~-- intersection-semilattice.
 
 Type class declaration creates new kind constant.
@@ -372,8 +389,9 @@ type Eq a = (a -> a -> Bool, a -> a -> Bool)
 \end{code}
 with definitions
 \begin{code}
-(==) :: Eq a -> a -> a -> Bool
+(==), (/=) :: Eq a -> a -> a -> Bool
 (==) = fst
+(==) = snd
 
 elem :: Eq a -> a -> [a] -> Bool
 -- elem ((==), (/=)) = any . (==)
@@ -412,7 +430,7 @@ Naturally arising question is, why would anyone want to do this?
 Well, we got rid of all problems that arise with type classes:
 monomorphism restriction, overlapping instances and so on.
 However, we need to explicitly write what instance should be used.
-Also we lost this possibility
+Also we lost the possibility
 to exploit it as way to perform compile-time computation.
 
 \chapter{Extensions}
@@ -493,10 +511,10 @@ This requires us to enrich a bit our mental framework (chapter \ref{section:Ment
 
 \begin{align*}
 	a^n      & ::= \overbrace{(a,\dots,a)}^n \\
-	\tau     & ::= \forall \, a^n {:} \kappa^n \, . \, \tau ~|~ \sigma \\
-	\sigma   & ::= a ~|~ c ~|~ \sigma \to \sigma ~|~ \sigma \, \sigma \\
+	\tau     & ::= \forall \, a^n {:} \kappa^n \typeDot \tau ~|~ \sigma \\
+	\sigma   & ::= a ~|~ c ~|~ \sigma \typeTo \sigma ~|~ \sigma \, \sigma \\
 	\kappa^n & ::= K_n ~|~ \overbrace{\kappa \times \dots \times \kappa}^n \\
-	\kappa   & ::= K ~|~ \kindStar ~|~ \kappa \to \kappa ~|~ \kappa \cap \kappa \\
+	\kappa   & ::= K ~|~ \kindStar ~|~ \kappa \kindTo \kappa ~|~ \kappa \cap \kappa \\
 \end{align*}
 
 Here
@@ -538,12 +556,12 @@ class ContainerM c a where
 \end{code}
 
 One would expect instances for lists and sets (among others).  However,
-Haskell set implementation allows creating sets only of types that belongs
+Haskell set implementation allows creating sets only of types that belong
 to \texttt{Ord}, so instance for \texttt{Set} of \texttt{ContainerT}
-is not be possible.
-Class \texttt{ContainerT} is somewhere under \(\kindStar \to \kindStar\),
+is not possible.
+Class \texttt{ContainerT} is somewhere under \(\kindStar \kindTo \kindStar\),
 but type constructor \texttt{Set} is not even there (it can be found
-under \(\texttt{Ord} \to \kindStar\), again contravariance of \(\to\)).
+under \(\texttt{Ord} \kindTo \kindStar\), again contravariance of \(\kindTo\)).
 
 Instance for \texttt{ContainerM} is more or less trivial.
 \begin{code}
@@ -597,8 +615,6 @@ Type functions\dots
 Full power of \(\lambda_2\) (or system \(\mathcal{F}\)).
 
 \subsection{Rank-2 types}
-
-% \section{Subtyping} % as example
 
 \chapter{Examples}
 
@@ -702,9 +718,9 @@ Count x `plus` Count y = Count (x + y)
 
 \section{Subtyping}
 
-Subtype polymorphism (for more detail see \cite{pierce:2002:types})
-is undoubtedly interesting feature. In math it comes natural to use
-natural number where some rational or real (or even complex) is expected.
+Subtype polymorphism (for details see \cite{pierce:2002:types})
+is undoubtedly interesting feature. In math it is common to use
+natural number where rational, real, or even complex is expected.
 %
 One might want to have the ease of use in language
 he or she is fond of.
@@ -718,7 +734,7 @@ coercion function that did the \uv{conversion}.
 
 Without subtyping one would need to use explicit
 coercion functions like \texttt{fromIntegral} or
-similar, or even use combination of more than one.
+similar, or even use compound of simpler ones.
 
 We would however like to move some responsibility
 from our shoulders to type system.
@@ -787,14 +803,31 @@ as \texttt{Maybe} is endofunctor it is more than natural to make following insta
 instance Subtype a (Maybe a) where
     coer = Just
 \end{code}
+This can be instantly generalised.
+\begin{code}
+instance PointedFunctor f => Subtype a (f a) where
+    coer = pure
+\end{code}
+And \texttt{PointedFunctor} laws will guarantee us that coercions
+can be added freely.
 
-Another one reveals relation between \texttt{Maybe} and \texttt{[]}.
+Little more on generalisation. Class \texttt{Functor}
+is class of covariant functors (because of laws). Hence
+following instance comes naturally.
+\begin{code}
+instance (Functor f, Subtype a b) => Subtype (f a) (f b) where
+    coer = fmap coer
+\end{code}
+
+Following reveals relation between \texttt{Maybe} and \texttt{[]}.
 \begin{code}
 instance Subtype (Maybe a) [a] where
     coer = maybe [] (:[])
 \end{code}
 And by transitivity we have also endofunctor-like coercion for lists as well.
 
+Last mentioned here is very interesting, even though it is only special
+case of one with \texttt{PointedFunctor}.
 \begin{code}
 instance Subtype a (b -> a) where
     coer = const
@@ -813,16 +846,16 @@ Following example is for those who are not familiar with those.
 \[
 \inferrule[Id]
 	{}
-	{\iota : A \hookrightarrow A}
+	{\iota \hasType A \inj A}
 \qquad
 \inferrule[Trans]
-	{\kappa_1 : A \hookrightarrow B, \kappa_2 : B \hookrightarrow C}
-	{\kappa_2 \circ \kappa_1 : A \hookrightarrow C}
+	{\kappa_1 \hasType A \inj B, \kappa_2 \hasType B \inj C}
+	{\kappa_2 \circ \kappa_1 \hasType A \inj C}
 \]
 \[
 \inferrule[Arrow]
-	{\kappa_1 : C \hookrightarrow A, \kappa_2 : B \hookrightarrow D}
-	{\lambda f . \kappa_2 \circ f \circ \kappa_1 : (A \to B) \hookrightarrow (C \to D)}
+	{\kappa_1 \hasType C \inj A, \kappa_2 \hasType B \inj D}
+	{\lambda f \typeDot \kappa_2 \circ f \circ \kappa_1 \hasType (A \typeTo B) \inj (C \typeTo D)}
 \]
 
 It would not be right to make impression that this Haskell code
