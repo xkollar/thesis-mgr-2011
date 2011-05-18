@@ -554,9 +554,13 @@ instance Ord a => ContainerM Set a where
 
 \subsection{Functional dependencies}
 
+This extension is implemented in \texttt{GHC} and can be enabled via
+\texttt{LANGUAGE} pragma \texttt{FunctionalDependencies}.
+
 Similarly as in relational databases \emph{functional dependencies} refers to
-restriction of selected relations (in this case multi-parameter type classes) in the
-way that they are functions. (Or at least some of their parameters.)
+restriction of selected relations (in this case multi-parameter type classes).
+They let you acknowledge compiler, that one of the parameter can be determined
+from the others.
 
 \subsection{Relaxed rules for instances}
 
@@ -589,6 +593,8 @@ Type functions\dots
 
 \section{Rank-n types}
 \label{extension:rankn}
+
+Full power of \(\lambda_2\) (or system \(\mathcal{F}\)).
 
 \subsection{Rank-2 types}
 
@@ -895,6 +901,8 @@ with growing amount of things done implicitly.  Also, reading and
 understanding alien code becomes harder with too much of
 implicitness. There is thin line and nobody draws it on the same place.
 Even \cite{python:zen} states that \uv{Explicit is better than implicit.}
+
+%\section{Type level programming}
 
 % \chapter{Unified view}
 
