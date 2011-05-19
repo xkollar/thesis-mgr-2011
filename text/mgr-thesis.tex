@@ -111,6 +111,8 @@ Haskell, type system, type extension
 
 \chapter{Introduction}
 
+Bit of history... why typing, type extensions, why it is important,
+
 \chapter{Type system}
 
 % \begin{align*}
@@ -140,15 +142,75 @@ Check for these rules is done statically (at compile time).
 
 \section{Basics}
 
-Very basic idea of any type system is, that various objects are
-suitable for various types of operations.
+Safety is an important property for computer programs.
+Indeed, everyone wants to be sure, that their programs will not go wrong,
+whatever that means in particular instance. There are various
+approaches to achieve this. At certain level of abstraction
+all these can be split into two main groups. One approach
+allows everything except for certain cases that are known to be wrong
+(i.e. blacklisting). The other is exact opposite. It forbids
+everything except for certain cases that are known to be legitimate
+(i.e. whitelisting).
 
-white listing/black listing
+Both have their pros and cons and again they are somehow complementary.
+As incompleteness theorems by Kurt G\"{o}del tells us, exact line
+between correct an incorrect will always remain hidden hidden from us,
+we can only lay down some other lines. \uv{Blacklisting} approach
+will newer cover all malicious cases and \uv{whitelisting} will
+always forbid some innocent cases. This is not necessarily bad thing.
 
-Values, types, kinds. \(\kindStar\). Doraz na to co je nove v pristupe
-mozeme extenzie videne jednotnejsie... triedy ako kindy...
+Type systems are members of \uv{whitelisting} family.  Basic objects that
+carries semantic are values. Values can not be used freely. They form
+groups such that members of certain group can be used in certain way.
+Objects are typically called \emph{values} and groups of objects are
+called \emph{types}. Fact that value \(x\) is member of type \(\tau\)
+is traditionally denoted as \(x \hasType \tau\) and pronounced \uv{\(x\)
+has type \(\tau\)}.
 
-attempt for more unified view of TC \& kind in Hask TS.
+In type systems there is usually structured way how to construct
+more complex types. For example having types \(\sigma\) and \(\tau\)
+we can construct type \(\sigma \typeTo \tau\) of all functions
+from \(\sigma\) to \(\tau\). Functions of such types are then
+allowed to be applied only on values of type \(\sigma\) and resulting
+value will have type \(\tau\). Some simple examples of these
+type systems such as \(\lambda_\rightarrow\) and system
+\(\mathcal{T}\) can be found e.g. in \cite{pierce:2002:types},
+\cite{barendregt:1992:lambdaProc}, and \cite{girard:1989:proofsAT}.
+
+Simple type systems are often so pedantic, that they
+become obstacles for other fundamental principles like
+\emph{abstraction principle}\footnote{Each significant piece
+of functionality in a program should be implemented in just one
+place of code. \cite{pierce:2002:types}}. That is typically
+point where constructions like polymorphism appears.
+
+Types start their own life. Interestingly enough, there are types where
+\uv{lives} no values. Complexity on type level reaches point where types
+become subject of similar problems we originally had with values. Kinds
+emerge. Fact that type \(\tau\) is member of kind \(\kappa\) is denoted
+by \(\tau \hasKind \kappa\). Kind of all populated types is traditionally
+denoted by \(\kindStar\). It is not uncommon to see so called \emph{type
+constructors} with kind \(\kindStar \kindTo \kindStar\). Those can be
+seen as \uv{functions on types}. Typical inhabitant of this kind is
+polymorphic list constructor.
+
+So far we have seen we have seen three levels of structures:
+values, types, kinds. Few system allow even intermixing e.g.
+values and types.
+
+This thesis are aimed at finding and pointing out similarities
+in structures used in modern systems i.e. Haskell. In terms
+of linear algebra, we are in search for orthonormality.
+
+% Very basic idea of any type system is, that various objects are
+% suitable only for limited set of operations.
+%
+% white/black listing
+%
+% Values, types, kinds. \(\kindStar\). Doraz na to co je nove v pristupe
+% mozeme extenzie videne jednotnejsie... triedy ako kindy...
+%
+% attempt for more unified view of TC \& kind in Hask TS.
 
 
 \section{Haskell type system}
