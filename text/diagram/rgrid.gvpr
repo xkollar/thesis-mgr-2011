@@ -1,0 +1,64 @@
+/* vim: syntax=cpp spell
+ * Script       : rgrid.gvpr
+ * Copyright    : Matej Kollar
+ * License      : GPL3
+ *
+ * Maintainer   : Matej Kollar <xkollar2@fi.muni.cz>
+ * Stability    : provisional
+ *
+ * Small module that arranges nodes to regular grid.
+ * (Vertical and horizontal distances managed separately.)
+ *
+ * Assumes each node is given an array coordinate co.
+ * Set positions based on this.
+ * Uses width and height of nodes; checks for ranksep and nodesep.
+ * Based on script by Emden R. Gansner
+ */
+BEGIN {
+  double dpi = 72;
+  double rank_sep = 0.5;
+  double node_sep = 0.25;
+  double maxwidth = 0;
+  double maxheight = 0;
+  // double x[int];
+  // double y[int];
+  // int r, c, first, i, previ;
+  // double w, h, v, prevv, prev, Y;
+  int x, y;
+  double v, w, h;
+
+  node_t n[int];
+  int cnt = 0;
+  int i;
+}
+BEG_G {
+  $.bb = "";
+  if (hasAttr($,"ranksep") && sscanf(ranksep,"%f", &v)) {
+    rank_sep = v;
+  }
+  if (hasAttr($,"nodesep") && sscanf(nodesep,"%f", &v)) {
+    node_sep = v;
+  }
+}
+N {
+  if (! (hasAttr($,"co") && hasAttr($,"width") && hasAttr($,"height"))) {
+    printf(2, "Error: gvpr script for regular grids: Expected is preprocessed graph with \"co\" parameter for all nodes!\n");
+    exit(1);
+  }
+  sscanf (width, "%f", &w);
+  sscanf (height, "%f", &h);
+  // sscanf (co, "%d,%d", &r, &c);
+  // w *= 72;
+  // h *= 72;
+  maxwidth  = MAX(maxwidth,w);
+  maxheight = MAX(maxheight,h);
+  n[cnt++] = $;
+}
+END_G {
+  // sscanf (co, "%d,%d", &x, &y);
+  // $.pos = sprintf ("%f,%f", ((maxwidth/2.0) + (maxwidth + node_sep)*x) * dpi, ((maxwidth/2.0) + (maxheight + rank_sep)*y) * dpi);
+  for (n[i]) {
+    sscanf (n[i].co, "%d,%d", &x, &y);
+    n[i].pos = sprintf ("%f,%f", (maxwidth + node_sep)*x*dpi, (maxheight + rank_sep)*y*dpi);
+  }
+}
