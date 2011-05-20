@@ -144,33 +144,33 @@ Check for these rules is done statically (at compile time).
 
 Safety is an important property for computer programs.
 Indeed, everyone wants to be sure, that their programs will not go wrong,
-whatever that means in particular instance. There are various
+whatever that means in particular context. There are various
 approaches to achieve this. At certain level of abstraction
 all these can be split into two main groups. One approach
 allows everything except for certain cases that are known to be wrong
-(i.e. blacklisting). The other is exact opposite. It forbids
+(i.e. blacklisting). The other is its opposite. It forbids
 everything except for certain cases that are known to be legitimate
 (i.e. whitelisting).
 
 Both have their pros and cons and again they are somehow complementary.
 As incompleteness theorems by Kurt G\"{o}del tells us, exact line
-between correct an incorrect will always remain hidden hidden from us,
+between correct an incorrect will always remain hidden from us,
 we can only lay down some other lines. \uv{Blacklisting} approach
 will newer cover all malicious cases and \uv{whitelisting} will
-always forbid some innocent cases. This is not necessarily bad thing.
+always forbid some innocent cases. However this might seems, it is
+not necessarily bad thing.
 
-Type systems are members of \uv{whitelisting} family.  Basic objects that
-carries semantic are values. Values can not be used freely. They form
-groups such that members of certain group can be used in certain way.
-Objects are typically called \emph{values} and groups of objects are
-called \emph{types}. Fact that value \(x\) is member of type \(\tau\)
-is traditionally denoted as \(x \hasType \tau\) and pronounced \uv{\(x\)
-has type \(\tau\)}.
+Type systems are members of \uv{whitelisting} family. Basic objects
+that carries semantic are called \emph{values}. Values can not be used
+freely. They form groups such that members of certain group can be used
+only in certain ways. Groups of objects are called \emph{types} and fact
+that value \(x\) is member of type \(\tau\) is traditionally denoted as
+\(x \hasType \tau\) and pronounced \uv{\(x\) has type \(\tau\)}.
 
-In type systems there is usually structured way how to construct
-more complex types. For example having types \(\sigma\) and \(\tau\)
-we can construct type \(\sigma \typeTo \tau\) of all functions
-from \(\sigma\) to \(\tau\). Functions of such types are then
+Type systems usually provide structured way how to construct
+more complex types from simpler ones. For example having types \(\sigma\)
+and \(\tau\) we can construct type \(\sigma \typeTo \tau\) of all
+functions from \(\sigma\) to \(\tau\). Functions of such types are
 allowed to be applied only on values of type \(\sigma\) and resulting
 value will have type \(\tau\). Some simple examples of these
 type systems such as \(\lambda_\rightarrow\) and system
@@ -182,10 +182,10 @@ become obstacles for other fundamental principles like
 \emph{abstraction principle}\footnote{Each significant piece
 of functionality in a program should be implemented in just one
 place of code. \cite{pierce:2002:types}}. That is typically
-point where constructions like polymorphism appears.
+point where constructions similar to polymorphism appears.
 
-Types start their own life. Interestingly enough, there are types where
-\uv{lives} no values. Complexity on type level reaches point where types
+Types starts their own life. Interestingly enough, there are empty types~--
+types with no \uv{inhabitants}. Complexity on type level reaches point where types
 become subject of similar problems we originally had with values. Kinds
 emerge. Fact that type \(\tau\) is member of kind \(\kappa\) is denoted
 by \(\tau \hasKind \kappa\). Kind of all populated types is traditionally
@@ -194,9 +194,10 @@ constructors} with kind \(\kindStar \kindTo \kindStar\). Those can be
 seen as \uv{functions on types}. Typical inhabitant of this kind is
 polymorphic list constructor.
 
-So far we have seen we have seen three levels of structures:
+So far we have seen three levels of structures:
 values, types, kinds. Few system allow even intermixing e.g.
-values and types.
+values and types. Some allow their intermixing based
+on syntactic restrictions and some almost freely.
 
 This thesis are aimed at finding and pointing out similarities
 in structures used in modern systems i.e. Haskell. In terms
